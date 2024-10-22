@@ -15,7 +15,7 @@
               50: '#f2f4ef',
               100: '#e5e9df',
               200: '#ccd3bf',
-              300: '#b4c497',
+              300: '#B7C999',
               400: '#9cb579',
               500: '#84a65b',
               600: '#6a8549',
@@ -65,24 +65,63 @@
     }
   </script>
   <link rel="stylesheet" href="./fonts/font-face.css">
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-in-out forwards;
+    }
+    .fade-out {
+      animation: fadeOut 0.5s ease-in-out forwards;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 
 <body class="bg-gray-100 bg-[url('./assets/background-pattern.png')] bg-repeat bg-[length:12px_12px] text-gray-700 font-['Pulp_Display']">
   <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-9">
     <!-- <img src="./assets/hero.svg" class="w-full h-auto" alt="Header" /> -->
 
-    <header class="bg-purple-200 w-full h-auto bg-[url('./assets/hero--1.jpg')] bg-cover bg-center rounded-[48px]">
+    <header class="bg-purple-200 w-full h-auto bg-[url('./assets/background--high_spenders.jpg')] bg-cover bg-center rounded-[48px]">
       <div class="p-16 flex flex-col gap-20">
         <div>
           <h3 class="text-3xl text-gray-800 mb-2">Introducing Relay</h3>
           <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">
             Show meaningful content<br>
             to the right
-            <div class="inline-flex items-center bg-purple-500 text-white rounded-full px-4 py-2 text-sm">
-              <div class="bg-purple-600 rounded-full p-2 mr-2">
-                <!-- SVG icon here -->
+            <div id="labels" class="inline-flex">
+              <div id="label--browsers" class="hidden inline-flex items-center bg-green-500 text-white rounded-full px-4 py-2 text-sm">
+                <div class="bg-green-600 rounded-full p-2 mr-2">
+                  <!-- SVG icon here -->
+                </div>
+                <span>Browsers</span>
               </div>
-              <span>High Spenders</span>
+              <div id="label--bargain_hunters" class="hidden inline-flex items-center bg-pink-500 text-white rounded-full px-4 py-2 text-sm">
+                <div class="bg-pink-600 rounded-full p-2 mr-2">
+                  <!-- SVG icon here -->
+                </div>
+                <span>Bargain Hunters</span>
+              </div>
+              <div id="label--loyal_customers" class="hidden inline-flex items-center bg-orange-500 text-white rounded-full px-4 py-2 text-sm">
+                <div class="bg-orange-600 rounded-full p-2 mr-2">
+                  <!-- SVG icon here -->
+                </div>
+                <span>Loyal Customers</span>
+              </div>
+              <div id="label--high_spenders" class="hidden inline-flex items-center bg-purple-500 text-white rounded-full px-4 py-2 text-sm">
+                <div class="bg-purple-600 rounded-full p-2 mr-2">
+                  <!-- SVG icon here -->
+                </div>
+                <span>High Spenders</span>
+              </div>
             </div>
             customers.
           </h1>
@@ -92,14 +131,17 @@
         </div>
         
         <div id="segments" class="flex flex-row gap-7">
-          <div class="bg-green-300 rounded-[80px] text-center flex items-center justify-center h-[280px] w-[140px]">
+          <div id="thumb--browsers" class="hidden bg-green-300 rounded-[80px] text-center flex flex-col justify-start pt-14 h-[280px] w-[140px] bg-[url('./assets/browsers--thumb.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
             <h3 class="text-xl font-semibold text-green-800">Browsers</h3>
           </div>
-          <div class="bg-pink-300 rounded-[80px] text-center flex items-center justify-center h-[280px] w-[140px]">
+          <div id="thumb--bargain_hunters" class="bg-pink-300 rounded-[80px] text-center flex flex-col justify-start pt-14 h-[280px] w-[140px] bg-[url('./assets/bargain_hunters--thumb.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
             <h3 class="text-xl font-semibold text-pink-800">Bargain Hunters</h3>
           </div>
-          <div class="bg-orange-200 rounded-[80px] text-center flex items-center justify-center h-[280px] w-[140px]">
+          <div id="thumb--loyal_customers" class="bg-orange-200 rounded-[80px] text-center flex flex-col justify-start pt-14 h-[280px] w-[140px] bg-[url('./assets/loyal_customers--thumb.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
             <h3 class="text-xl font-semibold text-orange-800">Loyal Customers</h3>
+          </div>
+          <div id="thumb--high_spenders" class="bg-purple-300 rounded-[80px] text-center flex flex-col justify-start pt-14 h-[280px] w-[140px] bg-[url('./assets/high_spenders--thumb.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+            <h3 class="text-xl font-semibold text-purple-800">High Spenders</h3>
           </div>
         </div>
       </div>
@@ -167,6 +209,61 @@
         const [button] = document.getElementsByTagName('BUTTON')
         button.innerHTML = 'Request Access'
       }
+  
+      // Animation code
+      const playlist = ['high_spenders', 'browsers', 'loyal_customers', 'bargain_hunters'];
+      let currentIndex = 0;
+  
+      function transition() {
+        const current = playlist[currentIndex];
+        const next = playlist[(currentIndex + 1) % playlist.length];
+  
+        // Update background
+        document.querySelector('header').style.backgroundImage = `url('./assets/background--${next}.jpg')`;
+  
+        // Update labels
+        document.querySelector(`#label--${current}`).classList.add('hidden');
+        document.querySelector(`#label--${next}`).classList.remove('hidden');
+        document.querySelector(`#label--${next}`).classList.add('fade-in');
+  
+        // Update thumbnails
+        document.querySelector(`#thumb--${current}`).classList.add('fade-out');
+        setTimeout(() => {
+          document.querySelector(`#thumb--${current}`).classList.remove('fade-out');
+          document.querySelector(`#thumb--${current}`).classList.remove('hidden');
+          document.querySelector(`#segments`).appendChild(document.querySelector(`#thumb--${current}`));
+          
+          document.querySelector(`#thumb--${next}`).classList.add('hidden');
+          
+          setTimeout(() => {
+            document.querySelector(`#thumb--${current}`).classList.add('fade-in');
+            setTimeout(() => {
+              document.querySelector(`#thumb--${current}`).classList.remove('fade-in');
+            }, 500);
+          }, 50);
+        }, 500);
+  
+        currentIndex = (currentIndex + 1) % playlist.length;
+      }
+  
+      // Initial setup
+      function initialSetup() {
+        playlist.forEach((segment, index) => {
+          if (index === 0) {
+            document.querySelector(`#label--${segment}`).classList.remove('hidden');
+            document.querySelector(`#thumb--${segment}`).classList.add('hidden');
+          } else {
+            document.querySelector(`#label--${segment}`).classList.add('hidden');
+            document.querySelector(`#thumb--${segment}`).classList.remove('hidden');
+          }
+        });
+        document.querySelector('header').style.backgroundImage = `url('./assets/background--${playlist[0]}.jpg')`;
+      }
+  
+      initialSetup();
+  
+      // Trigger transition every 5 seconds
+      setInterval(transition, 5000);
     });
   </script>
 </body>
