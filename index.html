@@ -66,24 +66,6 @@
   </script>
   <link rel="stylesheet" href="./fonts/font-face.css">
   <style>
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-    .fade-in {
-      animation: fadeIn 0.5s ease-in-out forwards;
-    }
-    .fade-out {
-      animation: fadeOut 0.5s ease-in-out forwards;
-    }
-    .hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
     #labels {
       position: relative;
       height: 40px; /* Adjust based on your label height */
@@ -95,6 +77,34 @@
       position: absolute;
       transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
       white-space: nowrap;
+    }
+    header {
+      position: relative;
+      overflow: hidden;
+    }
+    .background-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      z-index: 1;
+    }
+    header > div {
+      position: relative;
+      z-index: 2;
+    }
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .fade-in {
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
     }
   </style>
 </head>
@@ -231,9 +241,26 @@
         const current = playlist[currentIndex];
         const next = playlist[(currentIndex + 1) % playlist.length];
   
-        // Update background
-        document.querySelector('header').style.backgroundImage = `url('./assets/background--${next}.jpg')`;
-  
+        const header = document.querySelector('header');
+        const existingOverlay = header.querySelector('.background-overlay');
+        const newOverlay = document.createElement('div');
+        newOverlay.className = 'background-overlay';
+        newOverlay.style.backgroundImage = `url('./assets/background--${next}.jpg')`;
+        
+        header.insertBefore(newOverlay, header.firstChild);
+
+        // Trigger reflow
+        newOverlay.offsetHeight;
+
+        newOverlay.style.opacity = '1';
+
+        if (existingOverlay) {
+          existingOverlay.style.opacity = '0';
+          setTimeout(() => {
+            existingOverlay.remove();
+          }, 1000);
+        }
+
         // Update labels
         const currentLabel = document.querySelector(`#label--${current}`);
         const nextLabel = document.querySelector(`#label--${next}`);
@@ -281,6 +308,13 @@
   
       // Initial setup
       function initialSetup() {
+        const header = document.querySelector('header');
+        const initialOverlay = document.createElement('div');
+        initialOverlay.className = 'background-overlay';
+        initialOverlay.style.backgroundImage = `url('./assets/background--${playlist[0]}.jpg')`;
+        initialOverlay.style.opacity = '1';
+        header.insertBefore(initialOverlay, header.firstChild);
+
         playlist.forEach((segment, index) => {
           const label = document.querySelector(`#label--${segment}`);
           if (index === 0) {
@@ -297,7 +331,6 @@
             document.querySelector(`#thumb--${segment}`).classList.remove('hidden');
           }
         });
-        document.querySelector('header').style.backgroundImage = `url('./assets/background--${playlist[0]}.jpg')`;
       }
   
       initialSetup();
