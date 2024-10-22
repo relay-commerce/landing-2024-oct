@@ -81,7 +81,20 @@
       animation: fadeOut 0.5s ease-in-out forwards;
     }
     .hidden {
-      display: none;
+      opacity: 0;
+      pointer-events: none;
+    }
+    #labels {
+      position: relative;
+      height: 40px; /* Adjust based on your label height */
+      overflow: hidden;
+      display: inline-flex;
+      transition: width 0.5s ease-in-out;
+    }
+    #labels > div {
+      position: absolute;
+      transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+      white-space: nowrap;
     }
   </style>
 </head>
@@ -98,25 +111,25 @@
             Show meaningful content<br>
             to the right
             <div id="labels" class="inline-flex">
-              <div id="label--browsers" class="hidden inline-flex items-center bg-green-500 text-white rounded-full px-4 py-2 text-sm">
+              <div id="label--browsers" class="hidden absolute inline-flex items-center bg-green-500 text-white rounded-full px-4 py-2 text-sm">
                 <div class="bg-green-600 rounded-full p-2 mr-2">
                   <!-- SVG icon here -->
                 </div>
                 <span>Browsers</span>
               </div>
-              <div id="label--bargain_hunters" class="hidden inline-flex items-center bg-pink-500 text-white rounded-full px-4 py-2 text-sm">
+              <div id="label--bargain_hunters" class="hidden absolute inline-flex items-center bg-pink-500 text-white rounded-full px-4 py-2 text-sm">
                 <div class="bg-pink-600 rounded-full p-2 mr-2">
                   <!-- SVG icon here -->
                 </div>
                 <span>Bargain Hunters</span>
               </div>
-              <div id="label--loyal_customers" class="hidden inline-flex items-center bg-orange-500 text-white rounded-full px-4 py-2 text-sm">
+              <div id="label--loyal_customers" class="hidden absolute inline-flex items-center bg-orange-500 text-white rounded-full px-4 py-2 text-sm">
                 <div class="bg-orange-600 rounded-full p-2 mr-2">
                   <!-- SVG icon here -->
                 </div>
                 <span>Loyal Customers</span>
               </div>
-              <div id="label--high_spenders" class="hidden inline-flex items-center bg-purple-500 text-white rounded-full px-4 py-2 text-sm">
+              <div id="label--high_spenders" class="hidden absolute inline-flex items-center bg-purple-500 text-white rounded-full px-4 py-2 text-sm">
                 <div class="bg-purple-600 rounded-full p-2 mr-2">
                   <!-- SVG icon here -->
                 </div>
@@ -222,9 +235,29 @@
         document.querySelector('header').style.backgroundImage = `url('./assets/background--${next}.jpg')`;
   
         // Update labels
-        document.querySelector(`#label--${current}`).classList.add('hidden');
-        document.querySelector(`#label--${next}`).classList.remove('hidden');
-        document.querySelector(`#label--${next}`).classList.add('fade-in');
+        const currentLabel = document.querySelector(`#label--${current}`);
+        const nextLabel = document.querySelector(`#label--${next}`);
+        const labelsContainer = document.getElementById('labels');
+  
+        currentLabel.style.transform = 'translateX(-100%)';
+        currentLabel.style.opacity = '0';
+  
+        nextLabel.style.transform = 'translateX(100%)';
+        nextLabel.classList.remove('hidden');
+  
+        setTimeout(() => {
+          // Adjust container width to match the next label
+          labelsContainer.style.width = `${nextLabel.offsetWidth}px`;
+  
+          nextLabel.style.transform = 'translateX(0)';
+          nextLabel.style.opacity = '1';
+  
+          setTimeout(() => {
+            currentLabel.classList.add('hidden');
+            currentLabel.style.transform = '';
+            currentLabel.style.opacity = '';
+          }, 500);
+        }, 50);
   
         // Update thumbnails
         document.querySelector(`#thumb--${current}`).classList.add('fade-out');
@@ -240,7 +273,7 @@
             setTimeout(() => {
               document.querySelector(`#thumb--${current}`).classList.remove('fade-in');
             }, 500);
-          }, 50);
+          }, 500);
         }, 500);
   
         currentIndex = (currentIndex + 1) % playlist.length;
@@ -249,11 +282,18 @@
       // Initial setup
       function initialSetup() {
         playlist.forEach((segment, index) => {
+          const label = document.querySelector(`#label--${segment}`);
           if (index === 0) {
-            document.querySelector(`#label--${segment}`).classList.remove('hidden');
+            label.classList.remove('hidden');
+            label.style.opacity = '1';
+            document.getElementById('labels').style.width = `${label.offsetWidth}px`;
+          } else {
+            label.classList.add('hidden');
+            label.style.opacity = '0';
+          }
+          if (index === 0) {
             document.querySelector(`#thumb--${segment}`).classList.add('hidden');
           } else {
-            document.querySelector(`#label--${segment}`).classList.add('hidden');
             document.querySelector(`#thumb--${segment}`).classList.remove('hidden');
           }
         });
