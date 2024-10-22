@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relay landing</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./fonts/font-face.css">
+</head>
+
+<body class="bg-gray-100 bg-[url('./assets/background-pattern.png')] bg-repeat bg-[length:12px_12px] text-gray-700 font-['Pulp_Display']">
+  <div class="w-[1180px] mx-auto flex flex-col gap-12">
+    <img src="./assets/hero.svg" width="1180" height="701" alt="Header" />
+    
+    <div class="flex flex-row gap-12">
+      <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8">
+        <div class="text-gray-800 text-3xl font-normal leading-normal">
+          Maximize conversions by taking control over your website
+        </div>
+        <div class="text-gray-700 text-2xl font-normal leading-normal">
+          Relay lets you tailor user experience based on behavior and prediction. Show dynamic blocks that reflect what the person is most likely to convert from
+        </div>
+        <img src="./assets/relay.svg" width="120" height="38" alt="Relay logo" />
+      </div>
+      <img src="./assets/shop-now.svg" width="631" height="573" alt="Graphical element" />
+    </div>
+
+    <div class="flex flex-row gap-12">
+      <img src="./assets/unleash.svg" width="721" height="573" alt="Graphical element" />
+      <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8">
+        <div class="text-gray-800 text-3xl font-normal leading-normal">
+          Display different content to different segments of visitors
+        </div>
+        <div class="text-gray-700 text-2xl font-normal leading-normal">
+          Dynamic Blocks, Pop-Ups and Notifications, and more to come. Display different content to different segments of visitors.
+        </div>
+        <div class="text-gray-700 text-2xl font-normal leading-normal">
+          All based on their individual data.
+        </div>
+      </div>
+    </div>
+
+    <form action="https://www.relaycommerce.io" method="get">
+    <div class="rounded-3xl bg-gray-300 backdrop-blur flex p-12 flex-col justify-center items-start gap-6 bg-[url('./assets/card-background.svg')] bg-no-repeat bg-[position:100%_100%] bg-[size:303px_286px]">
+      <div class="text-gray-800 text-3xl font-normal leading-normal">
+        Join the waitlist
+      </div>
+      <div class="text-xl font-normal leading-normal">
+        Provide high impact experiences to make every website visit count.
+      </div>
+        <div class="flex flex-row gap-6">
+          <div class="flex flex-col gap-0.5 w-1/2">
+            <label class="text-gray-900 text-sm font-semibold leading-normal">Email</label>
+            <input name="email" type="email" class="h-10 w-[443px] p-2 rounded-lg border border-gray-300 bg-gray-50 placeholder:text-gray-500 placeholder:text-xs" placeholder="Enter email address">
+          </div>
+          <div class="flex flex-col gap-0.5 w-1/2">
+            <label class="text-gray-900 text-sm font-semibold leading-normal">Website URL</label>
+            <input type="url" name="url" class="h-10 w-[443px] p-2 rounded-lg border border-gray-300 bg-gray-50 placeholder:text-gray-500 placeholder:text-xs" placeholder="Enter website URL">
+          </div>
+        </div>
+        <button type="submit" class="text-white text-base font-medium leading-4 rounded-lg bg-blue-600 min-h-[44px] py-3 px-5">
+          <span class="pt-0.5">Get Started</span>
+        </button>
+      </div>
+    </form>
+  </div>
+  <script>
+    addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const flag = urlParams.get('variant')
+      if (flag) {
+        const [button] = document.getElementsByTagName('BUTTON')
+        button.innerHTML = 'Request Access'
+      }
+    });
+  </script>
+</body>
+
+</html>

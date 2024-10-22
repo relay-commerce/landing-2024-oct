@@ -1,0 +1,4 @@
+node_modules
+.archive
+.local
+.DS_Store
