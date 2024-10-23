@@ -109,7 +109,7 @@
             <div class="flex-grow flex flex-col justify-between">
                 <div class="flex gap-2">
                     <img class="h-6 w-6" src="./assets/relay-logo.svg" alt="relay logo">
-                    <h2 class="font-bold text-lg text-gray-800">Introducing Relay</h2>
+                    <h2 class="font-bold text-lg text-gray-800">From the Makers of <span id="product">Fomo</span></h2>
                 </div>
                 <h1 class="text-2xl lg:text-3xl font-bold text-gray-800">Show meaningful content<br> to the right customers.</h1>
                 <p class="text-xs text-gray-800">The marketing suite you have been waiting for.</p>
@@ -147,10 +147,23 @@
               </div>
             
             <div class="flex flex-col justify-end">
-                <button class="text-sm lg:text-base bg-gray-900 text-white py-3 px-6 rounded-xl whitespace-nowrap flex-shrink-0">Get started</button>
+                <button class="text-sm lg:text-base bg-gray-900 text-white py-3 px-6 rounded-xl whitespace-nowrap flex-shrink-0">Learn more</button>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Check URL parameter for product name
+            const urlParams = new URLSearchParams(window.location.search);
+            const productName = urlParams.get('product');
+            
+            // Update product name if present in URL
+            if (productName) {
+                document.getElementById('product').textContent = productName;
+            }
+        });
+    </script>
 </body>
 
 </html>
