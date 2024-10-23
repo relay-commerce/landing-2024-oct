@@ -51,7 +51,7 @@
               50: '#f5f0ff',
               100: '#ebe0ff',
               200: '#d7c2ff',
-              300: '#c2a3ff',
+              300: '#CCB0EE',
               400: '#ae85ff',
               500: '#9061F9',
               600: '#7a4edb',
@@ -153,18 +153,18 @@
           </p>
         </div>
         
-        <div id="segments" class="flex flex-row gap-7">
-          <div id="thumb--browsers" class="hidden bg-green-300 rounded-[80px] text-center flex flex-col justify-start pt-14 h-[280px] w-[140px] bg-[url('./assets/browsers--thumb.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-            <h3 class="text-xl font-semibold text-green-800">Browsers</h3>
+        <div id="thumbs" class="flex flex-row gap-7">
+          <div id="thumb--high_spenders" class="bg-purple-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--high_spenders.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+            <h3 class="text-xl font-semibold text-purple-800">High Spenders</h3>
           </div>
-          <div id="thumb--bargain_hunters" class="bg-pink-300 rounded-[80px] text-center flex flex-col justify-start pt-14 h-[280px] w-[140px] bg-[url('./assets/bargain_hunters--thumb.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+          <div id="thumb--bargain_hunters" class="bg-pink-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--bargain_hunters.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
             <h3 class="text-xl font-semibold text-pink-800">Bargain Hunters</h3>
           </div>
-          <div id="thumb--loyal_customers" class="bg-orange-200 rounded-[80px] text-center flex flex-col justify-start pt-14 h-[280px] w-[140px] bg-[url('./assets/loyal_customers--thumb.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+          <div id="thumb--loyal_customers" class="bg-orange-200 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--loyal_customers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
             <h3 class="text-xl font-semibold text-orange-800">Loyal Customers</h3>
           </div>
-          <div id="thumb--high_spenders" class="bg-purple-300 rounded-[80px] text-center flex flex-col justify-start pt-14 h-[280px] w-[140px] bg-[url('./assets/high_spenders--thumb.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-            <h3 class="text-xl font-semibold text-purple-800">High Spenders</h3>
+          <div id="thumb--browsers" class="bg-green-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--browsers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+            <h3 class="text-xl font-semibold text-green-800">Browsers</h3>
           </div>
         </div>
       </div>
@@ -172,7 +172,7 @@
     
     <div class="flex flex-col md:flex-row gap-9">
       <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-1/2">
-        <div class="text-gray-800 text-lg md:text-xl font-normal leading-normal">
+        <div class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
           Maximize conversions by taking control over your website
         </div>
         <div class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
@@ -184,11 +184,8 @@
     </div>
     
     <div class="flex flex-col md:flex-row gap-9">
-      <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-2/3">
-        <img src="./assets/unleash.svg" class="w-full h-auto" alt="Graphical element" />
-      </div>
       <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-1/3">
-        <div class="text-gray-800 text-lg md:text-xl font-normal leading-normal">
+        <div class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
           Display different content to different segments of visitors
         </div>
         <div class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
@@ -198,11 +195,14 @@
           All based on their individual data.
         </div>
       </div>
+      <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-2/3 md:order-first">
+        <img src="./assets/unleash.svg" class="w-full h-auto" alt="Graphical element" />
+      </div>
     </div>
     
     <form action="https://www.relaycommerce.io" method="get">
       <div class="rounded-3xl bg-gray-300 backdrop-blur flex p-6 md:p-12 flex-col justify-center items-start gap-6 bg-[url('./assets/card-background.svg')] bg-no-repeat bg-right-bottom bg-contain">
-        <div class="text-gray-800 text-lg md:text-xl font-normal leading-normal">
+        <div class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
           Join the waitlist
         </div>
         <div class="text-sm md:text-base font-normal leading-normal">
@@ -225,117 +225,106 @@
     </form>
   </div>
   <script>
-    addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", () => {
+      // Check URL parameter for button text
       const urlParams = new URLSearchParams(window.location.search);
-      const flag = urlParams.get('variant')
-      if (flag) {
-        const [button] = document.getElementsByTagName('BUTTON')
-        button.innerHTML = 'Request Access'
+      if (urlParams.get('variant')) {
+        document.querySelector('button').textContent = 'Request Access';
       }
-  
-      // Animation code
+
+      // Animation setup
       const playlist = ['high_spenders', 'browsers', 'loyal_customers', 'bargain_hunters'];
       let currentIndex = 0;
-  
+
+      function updateElement(selector, action) {
+        const element = document.querySelector(selector);
+        if (element) action(element);
+      }
+
       function transition() {
         const current = playlist[currentIndex];
         const next = playlist[(currentIndex + 1) % playlist.length];
-  
+
+        // Update background
         const header = document.querySelector('header');
-        const existingOverlay = header.querySelector('.background-overlay');
         const newOverlay = document.createElement('div');
         newOverlay.className = 'background-overlay';
         newOverlay.style.backgroundImage = `url('./assets/background--${next}.jpg')`;
-        
         header.insertBefore(newOverlay, header.firstChild);
+        setTimeout(() => newOverlay.style.opacity = '1', 0);
 
-        // Trigger reflow
-        newOverlay.offsetHeight;
-
-        newOverlay.style.opacity = '1';
-
-        if (existingOverlay) {
-          existingOverlay.style.opacity = '0';
-          setTimeout(() => {
-            existingOverlay.remove();
-          }, 1000);
-        }
+        updateElement('.background-overlay:not(:first-child)', el => {
+          el.style.opacity = '0';
+          setTimeout(() => el.remove(), 1000);
+        });
 
         // Update labels
-        const currentLabel = document.querySelector(`#label--${current}`);
-        const nextLabel = document.querySelector(`#label--${next}`);
         const labelsContainer = document.getElementById('labels');
-  
-        currentLabel.style.transform = 'translateX(-100%)';
-        currentLabel.style.opacity = '0';
-  
-        nextLabel.style.transform = 'translateX(100%)';
-        nextLabel.classList.remove('hidden');
-  
-        setTimeout(() => {
-          // Adjust container width to match the next label
-          labelsContainer.style.width = `${nextLabel.offsetWidth}px`;
-  
-          nextLabel.style.transform = 'translateX(0)';
-          nextLabel.style.opacity = '1';
-  
+        updateElement(`#label--${current}`, el => {
+          el.style.transform = 'translateX(100%)';
+          el.style.opacity = '0';
+        });
+
+        updateElement(`#label--${next}`, el => {
+          el.classList.remove('hidden');
+          el.style.transform = 'translateX(-100%)';
           setTimeout(() => {
-            currentLabel.classList.add('hidden');
-            currentLabel.style.transform = '';
-            currentLabel.style.opacity = '';
-          }, 500);
-        }, 50);
-  
+            labelsContainer.style.width = `${el.offsetWidth}px`;
+            el.style.transform = 'translateX(0)';
+            el.style.opacity = '1';
+          }, 50);
+        });
+
+        setTimeout(() => {
+          updateElement(`#label--${current}`, el => {
+            el.classList.add('hidden');
+            el.style.transform = '';
+            el.style.opacity = '';
+          });
+        }, 550);
+
         // Update thumbnails
-        document.querySelector(`#thumb--${current}`).classList.add('fade-out');
+        updateElement(`#thumb--${current}`, el => el.classList.add('fade-out'));
+        
         setTimeout(() => {
-          document.querySelector(`#thumb--${current}`).classList.remove('fade-out');
-          document.querySelector(`#thumb--${current}`).classList.remove('hidden');
-          document.querySelector(`#segments`).appendChild(document.querySelector(`#thumb--${current}`));
-          
-          document.querySelector(`#thumb--${next}`).classList.add('hidden');
-          
-          setTimeout(() => {
-            document.querySelector(`#thumb--${current}`).classList.add('fade-in');
-            setTimeout(() => {
-              document.querySelector(`#thumb--${current}`).classList.remove('fade-in');
-            }, 500);
-          }, 500);
+          updateElement(`#thumb--${current}`, el => {
+            el.classList.remove('fade-out', 'hidden');
+            document.querySelector('#thumbs').insertBefore(el, document.querySelector('#thumbs').firstChild);
+            setTimeout(() => el.classList.add('fade-in'), 0);
+            setTimeout(() => el.classList.remove('fade-in'), 500);
+          });
+          updateElement(`#thumb--${next}`, el => el.classList.add('hidden'));
         }, 500);
-  
+
         currentIndex = (currentIndex + 1) % playlist.length;
       }
-  
+
       // Initial setup
-      function initialSetup() {
-        const header = document.querySelector('header');
+      updateElement('header', header => {
         const initialOverlay = document.createElement('div');
         initialOverlay.className = 'background-overlay';
         initialOverlay.style.backgroundImage = `url('./assets/background--${playlist[0]}.jpg')`;
         initialOverlay.style.opacity = '1';
         header.insertBefore(initialOverlay, header.firstChild);
+      });
 
-        playlist.forEach((segment, index) => {
-          const label = document.querySelector(`#label--${segment}`);
+      playlist.forEach((segment, index) => {
+        updateElement(`#label--${segment}`, el => {
           if (index === 0) {
-            label.classList.remove('hidden');
-            label.style.opacity = '1';
-            document.getElementById('labels').style.width = `${label.offsetWidth}px`;
+            el.classList.remove('hidden');
+            el.style.opacity = '1';
+            document.getElementById('labels').style.width = `${el.offsetWidth}px`;
           } else {
-            label.classList.add('hidden');
-            label.style.opacity = '0';
-          }
-          if (index === 0) {
-            document.querySelector(`#thumb--${segment}`).classList.add('hidden');
-          } else {
-            document.querySelector(`#thumb--${segment}`).classList.remove('hidden');
+            el.classList.add('hidden');
+            el.style.opacity = '0';
           }
         });
-      }
-  
-      initialSetup();
-  
-      // Trigger transition every 5 seconds
+        updateElement(`#thumb--${segment}`, el => {
+          el.classList.toggle('hidden', index === 0);
+        });
+      });
+
+      // Start transitions
       setInterval(transition, 5000);
     });
   </script>
