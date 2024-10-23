@@ -83,7 +83,7 @@
   <style>
     #labels {
       position: relative;
-      height: 40px; /* Adjust based on your label height */
+      height: 58px; /* Adjust based on your label height */
       overflow: hidden;
       display: inline-flex;
       transition: width 0.5s ease-in-out;
@@ -124,7 +124,7 @@
   </style>
 </head>
 
-<body class="bg-gray-100 bg-[url('./assets/background-pattern.png')] bg-repeat bg-[length:12px_12px] text-gray-700 font-['Pulp_Display']">
+<body class="bg-gray-100 bg-[url('./assets/background-pattern.png')] bg-repeat bg-[length:12px_12px] bg-fixed text-gray-700 font-['Pulp_Display']">
   <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-9">
     <!-- <img src="./assets/hero.svg" class="w-full h-auto" alt="Header" /> -->
 
@@ -132,31 +132,31 @@
       <div class="p-16 flex flex-col gap-20">
         <div>
           <h3 class="text-3xl text-gray-800 mb-2">Introducing Relay</h3>
-          <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">
+          <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4 md:leading-[3.5rem]">
             Show meaningful content<br>
             to the right
-            <div id="labels" class="inline-flex">
-              <div id="label--browsers" class="hidden absolute inline-flex items-center bg-green-500 text-white rounded-full px-4 py-2 text-sm">
+            <div id="labels" class="inline-flex translate-y-2">
+              <div id="label--browsers" class="hidden inline-flex items-center bg-green-500 text-white rounded-full p-2 pr-4 text-base font-medium">
                 <div class="bg-green-600 rounded-full p-2 mr-2">
-                  <!-- SVG icon here -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none"><path fill="#F6F5FF" fill-rule="evenodd" d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z" clip-rule="evenodd"/></svg>
                 </div>
                 <span>Browsers</span>
               </div>
-              <div id="label--bargain_hunters" class="hidden absolute inline-flex items-center bg-pink-500 text-white rounded-full px-4 py-2 text-sm">
+              <div id="label--bargain_hunters" class="hidden inline-flex items-center bg-pink-500 text-white rounded-full p-2 pr-4 text-base font-medium">
                 <div class="bg-pink-600 rounded-full p-2 mr-2">
-                  <!-- SVG icon here -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none"><path fill="#F6F5FF" fill-rule="evenodd" d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z" clip-rule="evenodd"/></svg>
                 </div>
                 <span>Bargain Hunters</span>
               </div>
-              <div id="label--loyal_customers" class="hidden absolute inline-flex items-center bg-orange-500 text-white rounded-full px-4 py-2 text-sm">
+              <div id="label--loyal_customers" class="hidden inline-flex items-center bg-orange-500 text-white rounded-full p-2 pr-4 text-base font-medium">
                 <div class="bg-orange-600 rounded-full p-2 mr-2">
-                  <!-- SVG icon here -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none"><path fill="#F6F5FF" fill-rule="evenodd" d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z" clip-rule="evenodd"/></svg>
                 </div>
                 <span>Loyal Customers</span>
               </div>
-              <div id="label--high_spenders" class="hidden absolute inline-flex items-center bg-purple-500 text-white rounded-full px-4 py-2 text-sm">
+              <div id="label--high_spenders" class="hidden inline-flex items-center bg-purple-500 text-white rounded-full p-2 pr-4 text-base font-medium">
                 <div class="bg-purple-600 rounded-full p-2 mr-2">
-                  <!-- SVG icon here -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none"><path fill="#F6F5FF" fill-rule="evenodd" d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z" clip-rule="evenodd"/></svg>
                 </div>
                 <span>High Spenders</span>
               </div>
@@ -170,16 +170,16 @@
         
         <div id="thumbs" class="flex flex-row gap-7">
           <div id="thumb--high_spenders" class="bg-purple-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--high_spenders.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-            <h3 class="text-xl font-semibold text-purple-800">High Spenders</h3>
+            <h3 class="text-xl font-medium text-purple-800">High Spenders</h3>
           </div>
           <div id="thumb--bargain_hunters" class="bg-pink-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--bargain_hunters.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-            <h3 class="text-xl font-semibold text-pink-800">Bargain Hunters</h3>
+            <h3 class="text-xl font-medium text-pink-800">Bargain Hunters</h3>
           </div>
           <div id="thumb--loyal_customers" class="bg-orange-200 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--loyal_customers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-            <h3 class="text-xl font-semibold text-orange-800">Loyal Customers</h3>
+            <h3 class="text-xl font-medium text-orange-800">Loyal Customers</h3>
           </div>
           <div id="thumb--browsers" class="bg-green-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--browsers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-            <h3 class="text-xl font-semibold text-green-800">Browsers</h3>
+            <h3 class="text-xl font-medium text-green-800">Browsers</h3>
           </div>
         </div>
       </div>
