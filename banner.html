@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gray: {
+                            50: '#f7f7f7',
+                            100: '#f3f3f3',
+                            125: '#eeeeee',
+                            150: '#e9e9e9',
+                            200: '#dfdfdf',
+                            300: '#cccccc',
+                            350: '#ababab',
+                            400: '#8a8a8a',
+                            500: '#757575',
+                            600: '#616161',
+                            700: '#484848',
+                            800: '#2e2e2e',
+                            900: '#181818'
+                        },
+                        green: {
+                            50: '#f2f4ef',
+                            100: '#e5e9df',
+                            200: '#ccd3bf',
+                            300: '#B7C999',
+                            400: '#9cb579',
+                            500: '#84a65b',
+                            600: '#6a8549',
+                            700: '#51643a',
+                            800: '#37432a',
+                            900: '#1e231a',
+                        },
+                        pink: {
+                            50: '#faf0f4',
+                            100: '#f5e1e9',
+                            200: '#ebc3d3',
+                            300: '#da90a9',
+                            400: '#d06f8f',
+                            500: '#c54e75',
+                            600: '#a93960',
+                            700: '#7f2b48',
+                            800: '#551c30',
+                            900: '#2b0e18',
+                        },
+                        orange: {
+                            50: '#fff7f4',
+                            100: '#ffefe9',
+                            200: '#ffd0c0',
+                            300: '#ffb199',
+                            400: '#ff9273',
+                            500: '#ff734d',
+                            600: '#e65c3d',
+                            700: '#cc452e',
+                            800: '#992e1f',
+                            900: '#66170f',
+                        },
+                        purple: {
+                            50: '#f5f0ff',
+                            100: '#ebe0ff',
+                            200: '#d7c2ff',
+                            300: '#CCB0EE',
+                            400: '#ae85ff',
+                            500: '#9061F9',
+                            600: '#7a4edb',
+                            700: '#643bbd',
+                            800: '#4e299f',
+                            900: '#381881',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="./fonts/font-face.css">
+    <style>
+        .banner {
+            background: rgba(204, 176, 238, 1);
+            border-radius: 20px;
+            min-height: 160px;
+            background: url("assets/banner--high_spenders.svg") bottom right no-repeat #CCB0EE;
+        }
+
+        .segment-text {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 14px;
+            text-align: center;
+            padding-top: 24px;
+        }
+
+        .banner__segment {
+            height: 136px;
+            width: 64px;
+            border-radius: 32px;
+            position: relative;
+        }
+
+        .banner__segment-image {
+            position: absolute;
+            bottom: 0;
+            border-radius: 0 0 45% 45%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="flex relative pt-4 pb-2 px-6">
+            <div class="max-w-[424px] mr-12">
+                <div class="flex gap-2 pb-2">
+                    <img class="h-6 w-6" src="./assets/relay-logo.svg" alt="relay logo">
+                    <h3 class="font-bold text-lg text-gray-800">Introducing Relay</h3>
+                </div>
+                <p class="text-3xl font-bold leading-30 mb-2 pr-8 text-gray-800">Show meaningful content to the right customers.</p>
+                <p class="text-xs text-gray-800">The marketing suite you have been waiting for.</p>
+            </div>
+
+            <div class="flex gap-4 relative">
+                <div class="banner__segment bg-green-300">
+                    <p class="segment-text text-green-800">Browsers</p>
+                    <img class="banner__segment-image" src="./assets/thumb--browsers.jpg" alt="segment browsers">
+                </div>
+                <div class="banner__segment bg-pink-300">
+                    <p class="segment-text text-pink-700">Bargain Hunters</p>
+                    <img class="banner__segment-image" src="./assets/thumb--bargain_hunters.jpg" alt="segment bargain hunters">
+                </div>
+                <div class="banner__segment bg-orange-200">
+                    <p class="segment-text text-orange-600">Loyal Customers</p>
+                    <img class="banner__segment-image" src="./assets/thumb--loyal_customers.jpg" alt="segment loyal customers">
+                </div>
+            </div>
+
+            <div class="absolute z-10 right-4 bottom-8">
+                <button class="bg-gray-900 text-white h-11 w-32 rounded-lg">Get started</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    </script>
+</body>
+
+</html>
