@@ -51,7 +51,7 @@
               50: '#f5f0ff',
               100: '#ebe0ff',
               200: '#d7c2ff',
-              300: '#c2a3ff',
+              300: '#CCB0EE',
               400: '#ae85ff',
               500: '#9061F9',
               600: '#7a4edb',
@@ -153,18 +153,18 @@
           </p>
         </div>
         
-        <div id="segments" class="flex flex-row gap-7">
-          <div id="thumb--browsers" class="hidden bg-green-300 rounded-[80px] text-center flex flex-col justify-start pt-14 h-[280px] w-[140px] bg-[url('./assets/browsers--thumb.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-            <h3 class="text-xl font-semibold text-green-800">Browsers</h3>
+        <div id="thumbs" class="flex flex-row gap-7">
+          <div id="thumb--high_spenders" class="bg-purple-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--high_spenders.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+            <h3 class="text-xl font-semibold text-purple-800">High Spenders</h3>
           </div>
-          <div id="thumb--bargain_hunters" class="bg-pink-300 rounded-[80px] text-center flex flex-col justify-start pt-14 h-[280px] w-[140px] bg-[url('./assets/bargain_hunters--thumb.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+          <div id="thumb--bargain_hunters" class="bg-pink-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--bargain_hunters.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
             <h3 class="text-xl font-semibold text-pink-800">Bargain Hunters</h3>
           </div>
-          <div id="thumb--loyal_customers" class="bg-orange-200 rounded-[80px] text-center flex flex-col justify-start pt-14 h-[280px] w-[140px] bg-[url('./assets/loyal_customers--thumb.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+          <div id="thumb--loyal_customers" class="bg-orange-200 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--loyal_customers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
             <h3 class="text-xl font-semibold text-orange-800">Loyal Customers</h3>
           </div>
-          <div id="thumb--high_spenders" class="bg-purple-300 rounded-[80px] text-center flex flex-col justify-start pt-14 h-[280px] w-[140px] bg-[url('./assets/high_spenders--thumb.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-            <h3 class="text-xl font-semibold text-purple-800">High Spenders</h3>
+          <div id="thumb--browsers" class="bg-green-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--browsers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+            <h3 class="text-xl font-semibold text-green-800">Browsers</h3>
           </div>
         </div>
       </div>
@@ -266,10 +266,10 @@
         const nextLabel = document.querySelector(`#label--${next}`);
         const labelsContainer = document.getElementById('labels');
   
-        currentLabel.style.transform = 'translateX(-100%)';
+        currentLabel.style.transform = 'translateX(100%)';
         currentLabel.style.opacity = '0';
   
-        nextLabel.style.transform = 'translateX(100%)';
+        nextLabel.style.transform = 'translateX(-100%)';
         nextLabel.classList.remove('hidden');
   
         setTimeout(() => {
@@ -291,7 +291,12 @@
         setTimeout(() => {
           document.querySelector(`#thumb--${current}`).classList.remove('fade-out');
           document.querySelector(`#thumb--${current}`).classList.remove('hidden');
-          document.querySelector(`#segments`).appendChild(document.querySelector(`#thumb--${current}`));
+          
+          // Change: Insert the current thumb at the beginning instead of appending
+          document.querySelector(`#thumbs`).insertBefore(
+            document.querySelector(`#thumb--${current}`),
+            document.querySelector(`#thumbs`).firstChild
+          );
           
           document.querySelector(`#thumb--${next}`).classList.add('hidden');
           
