@@ -225,122 +225,106 @@
     </form>
   </div>
   <script>
-    addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", () => {
+      // Check URL parameter for button text
       const urlParams = new URLSearchParams(window.location.search);
-      const flag = urlParams.get('variant')
-      if (flag) {
-        const [button] = document.getElementsByTagName('BUTTON')
-        button.innerHTML = 'Request Access'
+      if (urlParams.get('variant')) {
+        document.querySelector('button').textContent = 'Request Access';
       }
-  
-      // Animation code
+
+      // Animation setup
       const playlist = ['high_spenders', 'browsers', 'loyal_customers', 'bargain_hunters'];
       let currentIndex = 0;
-  
+
+      function updateElement(selector, action) {
+        const element = document.querySelector(selector);
+        if (element) action(element);
+      }
+
       function transition() {
         const current = playlist[currentIndex];
         const next = playlist[(currentIndex + 1) % playlist.length];
-  
+
+        // Update background
         const header = document.querySelector('header');
-        const existingOverlay = header.querySelector('.background-overlay');
         const newOverlay = document.createElement('div');
         newOverlay.className = 'background-overlay';
         newOverlay.style.backgroundImage = `url('./assets/background--${next}.jpg')`;
-        
         header.insertBefore(newOverlay, header.firstChild);
+        setTimeout(() => newOverlay.style.opacity = '1', 0);
 
-        // Trigger reflow
-        newOverlay.offsetHeight;
-
-        newOverlay.style.opacity = '1';
-
-        if (existingOverlay) {
-          existingOverlay.style.opacity = '0';
-          setTimeout(() => {
-            existingOverlay.remove();
-          }, 1000);
-        }
+        updateElement('.background-overlay:not(:first-child)', el => {
+          el.style.opacity = '0';
+          setTimeout(() => el.remove(), 1000);
+        });
 
         // Update labels
-        const currentLabel = document.querySelector(`#label--${current}`);
-        const nextLabel = document.querySelector(`#label--${next}`);
         const labelsContainer = document.getElementById('labels');
-  
-        currentLabel.style.transform = 'translateX(100%)';
-        currentLabel.style.opacity = '0';
-  
-        nextLabel.style.transform = 'translateX(-100%)';
-        nextLabel.classList.remove('hidden');
-  
-        setTimeout(() => {
-          // Adjust container width to match the next label
-          labelsContainer.style.width = `${nextLabel.offsetWidth}px`;
-  
-          nextLabel.style.transform = 'translateX(0)';
-          nextLabel.style.opacity = '1';
-  
+        updateElement(`#label--${current}`, el => {
+          el.style.transform = 'translateX(100%)';
+          el.style.opacity = '0';
+        });
+
+        updateElement(`#label--${next}`, el => {
+          el.classList.remove('hidden');
+          el.style.transform = 'translateX(-100%)';
           setTimeout(() => {
-            currentLabel.classList.add('hidden');
-            currentLabel.style.transform = '';
-            currentLabel.style.opacity = '';
-          }, 500);
-        }, 50);
-  
+            labelsContainer.style.width = `${el.offsetWidth}px`;
+            el.style.transform = 'translateX(0)';
+            el.style.opacity = '1';
+          }, 50);
+        });
+
+        setTimeout(() => {
+          updateElement(`#label--${current}`, el => {
+            el.classList.add('hidden');
+            el.style.transform = '';
+            el.style.opacity = '';
+          });
+        }, 550);
+
         // Update thumbnails
-        document.querySelector(`#thumb--${current}`).classList.add('fade-out');
+        updateElement(`#thumb--${current}`, el => el.classList.add('fade-out'));
+        
         setTimeout(() => {
-          document.querySelector(`#thumb--${current}`).classList.remove('fade-out');
-          document.querySelector(`#thumb--${current}`).classList.remove('hidden');
-          
-          // Change: Insert the current thumb at the beginning instead of appending
-          document.querySelector(`#thumbs`).insertBefore(
-            document.querySelector(`#thumb--${current}`),
-            document.querySelector(`#thumbs`).firstChild
-          );
-          
-          document.querySelector(`#thumb--${next}`).classList.add('hidden');
-          
-          setTimeout(() => {
-            document.querySelector(`#thumb--${current}`).classList.add('fade-in');
-            setTimeout(() => {
-              document.querySelector(`#thumb--${current}`).classList.remove('fade-in');
-            }, 500);
-          }, 500);
+          updateElement(`#thumb--${current}`, el => {
+            el.classList.remove('fade-out', 'hidden');
+            document.querySelector('#thumbs').insertBefore(el, document.querySelector('#thumbs').firstChild);
+            setTimeout(() => el.classList.add('fade-in'), 0);
+            setTimeout(() => el.classList.remove('fade-in'), 500);
+          });
+          updateElement(`#thumb--${next}`, el => el.classList.add('hidden'));
         }, 500);
-  
+
         currentIndex = (currentIndex + 1) % playlist.length;
       }
-  
+
       // Initial setup
-      function initialSetup() {
-        const header = document.querySelector('header');
+      updateElement('header', header => {
         const initialOverlay = document.createElement('div');
         initialOverlay.className = 'background-overlay';
         initialOverlay.style.backgroundImage = `url('./assets/background--${playlist[0]}.jpg')`;
         initialOverlay.style.opacity = '1';
         header.insertBefore(initialOverlay, header.firstChild);
+      });
 
-        playlist.forEach((segment, index) => {
-          const label = document.querySelector(`#label--${segment}`);
+      playlist.forEach((segment, index) => {
+        updateElement(`#label--${segment}`, el => {
           if (index === 0) {
-            label.classList.remove('hidden');
-            label.style.opacity = '1';
-            document.getElementById('labels').style.width = `${label.offsetWidth}px`;
+            el.classList.remove('hidden');
+            el.style.opacity = '1';
+            document.getElementById('labels').style.width = `${el.offsetWidth}px`;
           } else {
-            label.classList.add('hidden');
-            label.style.opacity = '0';
-          }
-          if (index === 0) {
-            document.querySelector(`#thumb--${segment}`).classList.add('hidden');
-          } else {
-            document.querySelector(`#thumb--${segment}`).classList.remove('hidden');
+            el.classList.add('hidden');
+            el.style.opacity = '0';
           }
         });
-      }
-  
-      initialSetup();
-  
-      // Trigger transition every 5 seconds
+        updateElement(`#thumb--${segment}`, el => {
+          el.classList.toggle('hidden', index === 0);
+        });
+      });
+
+      // Start transitions
       setInterval(transition, 5000);
     });
   </script>
