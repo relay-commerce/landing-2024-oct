@@ -81,71 +81,76 @@
     </script>
     <link rel="stylesheet" href="./fonts/font-face.css">
     <style>
-        .banner {
-            background: rgba(204, 176, 238, 1);
-            border-radius: 20px;
-            min-height: 160px;
-            background: url("assets/banner--high_spenders.svg") bottom right no-repeat #CCB0EE;
+        #segments {
+            display: none;
         }
 
-        .segment-text {
-            font-size: 12px;
-            font-weight: 400;
-            line-height: 14px;
-            text-align: center;
-            padding-top: 24px;
+        #labels {
+            display: none;
         }
 
-        .banner__segment {
-            height: 136px;
-            width: 64px;
-            border-radius: 32px;
-            position: relative;
+        @media (min-width: 721px) and (max-width: 840px) {
+            #labels {
+                display: flex;
+            }
         }
 
-        .banner__segment-image {
-            position: absolute;
-            bottom: 0;
-            border-radius: 0 0 45% 45%;
+        @media (min-width: 841px) {
+            #segments {
+                display: flex;
+            }
         }
     </style>
 </head>
 
-<body>
-    <div class="banner">
-        <div class="flex relative pt-4 pb-2 px-6">
-            <div class="max-w-[424px] mr-12">
-                <div class="flex gap-2 pb-2">
+<body class="font-['Pulp_Display']">
+    <div class="banner bg-[url('./assets/background--banner.jpg')] bg-no-repeat bg-[right_-30px_top] lg:bg-right bg-[length:auto_100%] rounded-[20px] bg-purple-300 h-[160px]">
+        <div class="flex p-4 gap-1 h-full">
+            <div class="flex-grow flex flex-col justify-between">
+                <div class="flex gap-2">
                     <img class="h-6 w-6" src="./assets/relay-logo.svg" alt="relay logo">
-                    <h3 class="font-bold text-lg text-gray-800">Introducing Relay</h3>
+                    <h2 class="font-bold text-lg text-gray-800">Introducing Relay</h2>
                 </div>
-                <p class="text-3xl font-bold leading-30 mb-2 pr-8 text-gray-800">Show meaningful content to the right customers.</p>
+                <h1 class="text-2xl lg:text-3xl font-bold text-gray-800">Show meaningful content<br> to the right customers.</h1>
                 <p class="text-xs text-gray-800">The marketing suite you have been waiting for.</p>
             </div>
-
-            <div class="flex gap-4 relative">
-                <div class="banner__segment bg-green-300">
-                    <p class="segment-text text-green-800">Browsers</p>
-                    <img class="banner__segment-image" src="./assets/thumb--browsers.jpg" alt="segment browsers">
+            
+            <div id="segments" class="h-full flex gap-4 mr-36 lg:mr-48">
+                <div class="bg-green-300 pt-6 rounded-[34px] text-center flex flex-col justify-start h-[128px] w-[68px] bg-[url('./assets/thumb--browsers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+                    <p class="text-xs font-semibold text-green-800">Browsers</p>
                 </div>
-                <div class="banner__segment bg-pink-300">
-                    <p class="segment-text text-pink-700">Bargain Hunters</p>
-                    <img class="banner__segment-image" src="./assets/thumb--bargain_hunters.jpg" alt="segment bargain hunters">
+                <div class="bg-pink-300 pt-4 rounded-[34px] text-center flex flex-col justify-start h-[128px] w-[68px] bg-[url('./assets/thumb--bargain_hunters.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+                    <p class="text-xs font-semibold text-pink-800">Bargain Hunters</p>
                 </div>
-                <div class="banner__segment bg-orange-200">
-                    <p class="segment-text text-orange-600">Loyal Customers</p>
-                    <img class="banner__segment-image" src="./assets/thumb--loyal_customers.jpg" alt="segment loyal customers">
+                <div class="bg-orange-200 pt-4 rounded-[34px] text-center flex flex-col justify-start h-[128px] w-[68px] bg-[url('./assets/thumb--loyal_customers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+                    <p class="text-xs font-semibold text-orange-600">Loyal Customers</p>
                 </div>
             </div>
 
-            <div class="absolute z-10 right-4 bottom-8">
-                <button class="bg-gray-900 text-white h-11 w-32 rounded-lg">Get started</button>
+            <div id="labels" class="h-full flex flex-col justify-center items-start gap-3 mr-36">
+                <div id="label--browsers" class="flex flex-row items-center bg-green-500 text-white rounded-full p-1.5 pr-3 text-xs">
+                    <div class="bg-green-600 rounded-full p-2 mr-1.5"></div>
+                    <span>Browsers</span>
+                </div>
+                <div id="label--bargain_hunters" class="flex flex-row items-center bg-pink-500 text-white rounded-full p-1.5 pr-3 text-xs">
+                    <div class="bg-pink-600 rounded-full p-2 mr-1.5"></div>
+                    <span>Bargain Hunters</span>
+                </div>
+                <div id="label--loyal_customers" class="flex flex-row items-center bg-orange-500 text-white rounded-full p-1.5 pr-3 text-xs">
+                    <div class="bg-orange-600 rounded-full p-2 mr-1.5"></div>
+                    <span>Loyal Customers</span>
+                </div>
+                <!-- <div id="label--high_spenders" class="flex flex-row items-center bg-purple-500 text-white rounded-full p-1.5 pr-3 text-xs">
+                  <div class="bg-purple-600 rounded-full p-2 mr-1.5"></div>
+                  <span>High Spenders</span>
+                </div> -->
+              </div>
+            
+            <div class="flex flex-col justify-end">
+                <button class="text-sm lg:text-base bg-gray-900 text-white py-3 px-6 rounded-xl whitespace-nowrap flex-shrink-0">Get started</button>
             </div>
         </div>
     </div>
-
-    <script>
-    </script>
 </body>
 
 </html>
