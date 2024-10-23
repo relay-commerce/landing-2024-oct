@@ -1,357 +1,534 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Relay landing</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            gray: {
-              50: '#f7f7f7', 
-              100: '#f3f3f3', 
-              125: '#eeeeee', 
-              150: '#e9e9e9', 
-              200: '#dfdfdf', 
-              300: '#cccccc', 
-              350: '#ababab', 
-              400: '#8a8a8a', 
-              500: '#757575', 
-              600: '#616161', 
-              700: '#484848', 
-              800: '#2e2e2e', 
-              900: '#181818'
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Relay landing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              gray: {
+                50: "#f7f7f7",
+                100: "#f3f3f3",
+                125: "#eeeeee",
+                150: "#e9e9e9",
+                200: "#dfdfdf",
+                300: "#cccccc",
+                350: "#ababab",
+                400: "#8a8a8a",
+                500: "#757575",
+                600: "#616161",
+                700: "#484848",
+                800: "#2e2e2e",
+                900: "#181818",
+              },
+              green: {
+                50: "#f2f4ef",
+                100: "#e5e9df",
+                200: "#ccd3bf",
+                300: "#B7C999",
+                400: "#9cb579",
+                500: "#84a65b",
+                600: "#6a8549",
+                700: "#51643a",
+                800: "#37432a",
+                900: "#1e231a",
+              },
+              pink: {
+                50: "#faf0f4",
+                100: "#f5e1e9",
+                200: "#ebc3d3",
+                300: "#da90a9",
+                400: "#d06f8f",
+                500: "#c54e75",
+                600: "#a93960",
+                700: "#7f2b48",
+                800: "#551c30",
+                900: "#2b0e18",
+              },
+              orange: {
+                50: "#fff7f4",
+                100: "#ffefe9",
+                200: "#ffd0c0",
+                300: "#ffb199",
+                400: "#ff9273",
+                500: "#ff734d",
+                600: "#e65c3d",
+                700: "#cc452e",
+                800: "#992e1f",
+                900: "#66170f",
+              },
+              purple: {
+                50: "#f5f0ff",
+                100: "#ebe0ff",
+                200: "#d7c2ff",
+                300: "#CCB0EE",
+                400: "#ae85ff",
+                500: "#9061F9",
+                600: "#7a4edb",
+                700: "#643bbd",
+                800: "#4e299f",
+                900: "#381881",
+              },
             },
-            green: {
-              50: '#f2f4ef',
-              100: '#e5e9df',
-              200: '#ccd3bf',
-              300: '#B7C999',
-              400: '#9cb579',
-              500: '#84a65b',
-              600: '#6a8549',
-              700: '#51643a',
-              800: '#37432a',
-              900: '#1e231a',
-            },
-            pink: {
-              50: '#faf0f4',
-              100: '#f5e1e9',
-              200: '#ebc3d3',
-              300: '#da90a9',
-              400: '#d06f8f',
-              500: '#c54e75',
-              600: '#a93960',
-              700: '#7f2b48',
-              800: '#551c30',
-              900: '#2b0e18',
-            },
-            orange: {
-              50: '#fff7f4',
-              100: '#ffefe9',
-              200: '#ffd0c0',
-              300: '#ffb199',
-              400: '#ff9273',
-              500: '#ff734d',
-              600: '#e65c3d',
-              700: '#cc452e',
-              800: '#992e1f',
-              900: '#66170f',
-            },
-            purple: {
-              50: '#f5f0ff',
-              100: '#ebe0ff',
-              200: '#d7c2ff',
-              300: '#CCB0EE',
-              400: '#ae85ff',
-              500: '#9061F9',
-              600: '#7a4edb',
-              700: '#643bbd',
-              800: '#4e299f',
-              900: '#381881',
-            },
-          }
-        }
+          },
+        },
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="./fonts/font-face.css" />
+    <style>
+      #labels {
+        position: relative;
+        height: 58px; /* Adjust based on your label height */
+        overflow: hidden;
+        display: inline-flex;
+        transition: width 0.5s ease-in-out;
       }
-    }
-  </script>
-  <link rel="stylesheet" href="./fonts/font-face.css">
-  <style>
-    #labels {
-      position: relative;
-      height: 58px; /* Adjust based on your label height */
-      overflow: hidden;
-      display: inline-flex;
-      transition: width 0.5s ease-in-out;
-    }
-    #labels > div {
-      position: absolute;
-      transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-      white-space: nowrap;
-    }
-    header {
-      position: relative;
-      overflow: hidden;
-    }
-    .background-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      z-index: 1;
-    }
-    header > div {
-      position: relative;
-      z-index: 2;
-    }
-    .fade-out {
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-    .fade-in {
-      opacity: 1;
-      transition: opacity 0.5s ease-in-out;
-    }
-  </style>
-</head>
+      #labels > div {
+        position: absolute;
+        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        white-space: nowrap;
+      }
+      header {
+        position: relative;
+        overflow: hidden;
+      }
+      .background-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        z-index: 1;
+      }
+      header > div {
+        position: relative;
+        z-index: 2;
+      }
+      .fade-out {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+      .fade-in {
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+      }
+    </style>
+  </head>
 
-<body class="bg-gray-100 bg-[url('./assets/background-pattern.png')] bg-repeat bg-[length:12px_12px] bg-fixed text-gray-700 font-['Pulp_Display']">
-  <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-9">
-    <!-- <img src="./assets/hero.svg" class="w-full h-auto" alt="Header" /> -->
+  <body
+    class="relative bg-[url('./assets/background-pattern.png')] bg-repeat bg-[length:12px_12px] bg-fixed text-gray-700 font-['Pulp_Display']">
+    <div
+      class="fixed inset-0 backdrop-blur-sm z-50 hidden"
+      id="popup">
+      <dialog
+        open
+        class="fixed w-[846px] h-[418px] top-40 bg-white rounded-lg flex flex-row overflow-clip">
+        <img
+          src="./assets//modal-hero.png"
+          width="423"
+          height="418"
+          alt="decoration" />
+        <div class="p-8 flex flex-col grow">
+          <div class="text-right text-3xl">
+            <span
+              class="cursor-pointer"
+              onclick="hidePopup()"
+              >&times;</span
+            >
+          </div>
+          <div
+            class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
+            We Need Your Approval to Unlock New Features
+          </div>
+          <div
+            class="text-gray-700 text-xs md:text-lg font-normal leading-normal mt-2">
+            To give you access to Relay, we need a few more permissions. Read
+            Fomo workspace data, including orders, products and customers data
+            synced from your Shopify store. We value your privacy and trust, and
+            we only ask for the permissions needed to make sure you get the best
+            out of Fomo.
+          </div>
+          <a
+            href="https://www.shopify.com/"
+            target="_parent"
+            class="text-white text-xs text-center font-medium leading-4 mt-4 rounded-lg bg-blue-600 py-3 px-5 md:w-auto">
+            Continue to approve
+          </a>
+        </div>
+      </dialog>
+    </div>
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-9">
+      <header
+        class="bg-purple-200 w-full h-auto bg-[url('./assets/background--high_spenders.jpg')] bg-cover bg-center rounded-[48px]">
+        <div class="p-16 flex flex-col gap-20">
+          <div>
+            <h3 class="text-3xl text-gray-800 mb-2">Introducing Relay</h3>
+            <h1
+              class="text-4xl md:text-6xl font-bold text-gray-800 mb-4 md:leading-[3.5rem]">
+              Show meaningful content<br />
+              to the right
+              <div
+                id="labels"
+                class="inline-flex translate-y-2">
+                <div
+                  id="label--browsers"
+                  class="hidden inline-flex items-center bg-green-500 text-white rounded-full p-2 pr-4 text-base font-medium">
+                  <div class="bg-green-600 rounded-full p-2 mr-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="26"
+                      height="26"
+                      fill="none">
+                      <path
+                        fill="#f2f4ef"
+                        fill-rule="evenodd"
+                        d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z"
+                        clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <span>Browsers</span>
+                </div>
+                <div
+                  id="label--bargain_hunters"
+                  class="hidden inline-flex items-center bg-pink-500 text-white rounded-full p-2 pr-4 text-base font-medium">
+                  <div class="bg-pink-600 rounded-full p-2 mr-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="26"
+                      height="26"
+                      fill="none">
+                      <path
+                        fill="#faf0f4"
+                        fill-rule="evenodd"
+                        d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z"
+                        clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <span>Bargain Hunters</span>
+                </div>
+                <div
+                  id="label--loyal_customers"
+                  class="hidden inline-flex items-center bg-orange-500 text-white rounded-full p-2 pr-4 text-base font-medium">
+                  <div class="bg-orange-600 rounded-full p-2 mr-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="26"
+                      height="26"
+                      fill="none">
+                      <path
+                        fill="#fff7f4"
+                        fill-rule="evenodd"
+                        d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z"
+                        clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <span>Loyal Customers</span>
+                </div>
+                <div
+                  id="label--high_spenders"
+                  class="hidden inline-flex items-center bg-purple-500 text-white rounded-full p-2 pr-4 text-base font-medium">
+                  <div class="bg-purple-600 rounded-full p-2 mr-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="26"
+                      height="26"
+                      fill="none">
+                      <path
+                        fill="#f5f0ff"
+                        fill-rule="evenodd"
+                        d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z"
+                        clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <span>High Spenders</span>
+                </div>
+              </div>
+              customers.
+            </h1>
+            <p class="text-lg text-gray-800">
+              The marketing suite you have been waiting for.
+            </p>
+          </div>
 
-    <header class="bg-purple-200 w-full h-auto bg-[url('./assets/background--high_spenders.jpg')] bg-cover bg-center rounded-[48px]">
-      <div class="p-16 flex flex-col gap-20">
-        <div>
-          <h3 class="text-3xl text-gray-800 mb-2">Introducing Relay</h3>
-          <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4 md:leading-[3.5rem]">
-            Show meaningful content<br>
-            to the right
-            <div id="labels" class="inline-flex translate-y-2">
-              <div id="label--browsers" class="hidden inline-flex items-center bg-green-500 text-white rounded-full p-2 pr-4 text-base font-medium">
-                <div class="bg-green-600 rounded-full p-2 mr-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none"><path fill="#f2f4ef" fill-rule="evenodd" d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z" clip-rule="evenodd"/></svg>
-                </div>
-                <span>Browsers</span>
-              </div>
-              <div id="label--bargain_hunters" class="hidden inline-flex items-center bg-pink-500 text-white rounded-full p-2 pr-4 text-base font-medium">
-                <div class="bg-pink-600 rounded-full p-2 mr-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none"><path fill="#faf0f4" fill-rule="evenodd" d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z" clip-rule="evenodd"/></svg>
-                </div>
-                <span>Bargain Hunters</span>
-              </div>
-              <div id="label--loyal_customers" class="hidden inline-flex items-center bg-orange-500 text-white rounded-full p-2 pr-4 text-base font-medium">
-                <div class="bg-orange-600 rounded-full p-2 mr-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none"><path fill="#fff7f4" fill-rule="evenodd" d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z" clip-rule="evenodd"/></svg>
-                </div>
-                <span>Loyal Customers</span>
-              </div>
-              <div id="label--high_spenders" class="hidden inline-flex items-center bg-purple-500 text-white rounded-full p-2 pr-4 text-base font-medium">
-                <div class="bg-purple-600 rounded-full p-2 mr-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none"><path fill="#f5f0ff" fill-rule="evenodd" d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z" clip-rule="evenodd"/></svg>
-                </div>
-                <span>High Spenders</span>
-              </div>
+          <div
+            id="thumbs"
+            class="flex flex-row gap-7">
+            <div
+              id="thumb--high_spenders"
+              class="bg-purple-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--high_spenders.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+              <h3 class="text-xl font-medium text-purple-800">High Spenders</h3>
             </div>
-            customers.
-          </h1>
-          <p class="text-lg text-gray-800">
-            The marketing suite you have been waiting for.
-          </p>
-        </div>
-        
-        <div id="thumbs" class="flex flex-row gap-7">
-          <div id="thumb--high_spenders" class="bg-purple-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--high_spenders.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-            <h3 class="text-xl font-medium text-purple-800">High Spenders</h3>
-          </div>
-          <div id="thumb--bargain_hunters" class="bg-pink-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--bargain_hunters.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-            <h3 class="text-xl font-medium text-pink-800">Bargain Hunters</h3>
-          </div>
-          <div id="thumb--loyal_customers" class="bg-orange-200 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--loyal_customers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-            <h3 class="text-xl font-medium text-orange-800">Loyal Customers</h3>
-          </div>
-          <div id="thumb--browsers" class="bg-green-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--browsers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-            <h3 class="text-xl font-medium text-green-800">Browsers</h3>
+            <div
+              id="thumb--bargain_hunters"
+              class="bg-pink-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--bargain_hunters.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+              <h3 class="text-xl font-medium text-pink-800">Bargain Hunters</h3>
+            </div>
+            <div
+              id="thumb--loyal_customers"
+              class="bg-orange-200 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--loyal_customers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+              <h3 class="text-xl font-medium text-orange-800">
+                Loyal Customers
+              </h3>
+            </div>
+            <div
+              id="thumb--browsers"
+              class="bg-green-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--browsers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+              <h3 class="text-xl font-medium text-green-800">Browsers</h3>
+            </div>
           </div>
         </div>
+      </header>
+
+      <div class="flex flex-col md:flex-row gap-9">
+        <div
+          class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-1/2">
+          <div
+            class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
+            Maximize conversions by taking control over your website
+          </div>
+          <div
+            class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
+            Relay lets you tailor user experience based on behavior and
+            prediction. Show dynamic blocks that reflect what the person is most
+            likely to convert from
+          </div>
+          <img
+            src="./assets/relay.svg"
+            class="w-32 h-auto mt-4"
+            alt="Relay logo" />
+        </div>
+        <img
+          src="./assets/shop-now.svg"
+          class="w-full md:w-1/2 h-auto"
+          alt="Graphical element" />
       </div>
-    </header>
-    
-    <div class="flex flex-col md:flex-row gap-9">
-      <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-1/2">
-        <div class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
-          Maximize conversions by taking control over your website
+
+      <div class="flex flex-col md:flex-row gap-9">
+        <div
+          class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-1/3">
+          <div
+            class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
+            Display different content to different segments of visitors
+          </div>
+          <div
+            class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
+            Dynamic Blocks, Pop-Ups and Notifications, and more to come. Display
+            different content to different segments of visitors.
+          </div>
+          <div
+            class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
+            All based on their individual data.
+          </div>
         </div>
-        <div class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
-          Relay lets you tailor user experience based on behavior and prediction. Show dynamic blocks that reflect what the person is most likely to convert from
+        <div
+          class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-2/3 md:order-first">
+          <img
+            src="./assets/unleash.svg"
+            class="w-full h-auto"
+            alt="Graphical element" />
         </div>
-        <img src="./assets/relay.svg" class="w-32 h-auto mt-4" alt="Relay logo" />
       </div>
-      <img src="./assets/shop-now.svg" class="w-full md:w-1/2 h-auto" alt="Graphical element" />
-    </div>
-    
-    <div class="flex flex-col md:flex-row gap-9">
-      <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-1/3">
-        <div class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
-          Display different content to different segments of visitors
-        </div>
-        <div class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
-          Dynamic Blocks, Pop-Ups and Notifications, and more to come. Display different content to different segments of visitors.
-        </div>
-        <div class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
-          All based on their individual data.
-        </div>
-      </div>
-      <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-2/3 md:order-first">
-        <img src="./assets/unleash.svg" class="w-full h-auto" alt="Graphical element" />
-      </div>
-    </div>
-    
-    <form action="https://www.relaycommerce.io" method="get">
-      <div class="rounded-3xl bg-gray-300 backdrop-blur flex p-6 md:p-12 flex-col justify-center items-start gap-6 bg-[url('./assets/card-background.svg')] bg-no-repeat bg-right-bottom bg-contain">
-        <div class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
+
+      <div
+        class="rounded-3xl bg-gray-300 backdrop-blur flex p-6 md:p-12 flex-col justify-center items-start gap-6 bg-[url('./assets/card-background.svg')] bg-no-repeat bg-right-bottom bg-contain">
+        <div
+          class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
           Join the waitlist
         </div>
         <div class="text-sm md:text-base font-normal leading-normal">
           Provide high impact experiences to make every website visit count.
         </div>
-        <div class="flex flex-col md:flex-row gap-6 w-full">
-          <div class="flex flex-col gap-0.5 w-full md:w-1/2">
-            <label class="text-gray-900 text-xs font-semibold leading-normal">Email</label>
-            <input name="email" type="email" class="h-10 w-full p-2 rounded-lg border border-gray-300 bg-gray-50 placeholder:text-gray-500 placeholder:text-xs" placeholder="Enter email address">
+        <form
+          action="https://www.relaycommerce.io"
+          method="get"
+          id="subscribe"
+          class="hidden flex flex-col gap-6 w-full">
+          <div class="flex flex-col md:flex-row gap-6 w-full">
+            <div class="flex flex-col gap-0.5 w-full md:w-1/2">
+              <label class="text-gray-900 text-xs font-semibold leading-normal">
+                Email</label
+              >
+              <input
+                name="email"
+                type="email"
+                class="h-10 w-full p-2 rounded-lg border border-gray-300 bg-gray-50 placeholder:text-gray-500 placeholder:text-xs"
+                placeholder="Enter email address" />
+            </div>
+            <div class="flex flex-col gap-0.5 w-full md:w-1/2">
+              <label class="text-gray-900 text-xs font-semibold leading-normal">
+                Website URL</label
+              >
+              <input
+                type="url"
+                name="url"
+                class="h-10 w-full p-2 rounded-lg border border-gray-300 bg-gray-50 placeholder:text-gray-500 placeholder:text-xs"
+                placeholder="Enter website URL" />
+            </div>
           </div>
-          <div class="flex flex-col gap-0.5 w-full md:w-1/2">
-            <label class="text-gray-900 text-xs font-semibold leading-normal">Website URL</label>
-            <input type="url" name="url" class="h-10 w-full p-2 rounded-lg border border-gray-300 bg-gray-50 placeholder:text-gray-500 placeholder:text-xs" placeholder="Enter website URL">
-          </div>
+          <button
+            type="submit"
+            class="text-white text-xs font-medium leading-4 rounded-lg bg-blue-600 min-h-[44px] py-3 px-5 max-w-[145px] md:w-auto">
+            <span class="pt-0.5">Request Access</span>
+          </button>
+        </form>
+        <div
+          id="start"
+          class="hidden">
+          <button
+            type="submit"
+            class="text-white text-xs font-medium leading-4 rounded-lg bg-blue-600 min-h-[44px] py-3 px-5 w-[145px] md:w-auto"
+            onclick="showPopup()">
+            <span class="pt-0.5">Get Started</span>
+          </button>
         </div>
-        <button type="submit" class="text-white text-xs font-medium leading-4 rounded-lg bg-blue-600 min-h-[44px] py-3 px-5 w-full md:w-auto">
-          <span class="pt-0.5">Get Started</span>
-        </button>
       </div>
-    </form>
-  </div>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Check URL parameter for button text
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('variant')) {
-        document.querySelector('button').textContent = 'Request Access';
+    </div>
+
+    <script>
+      function hidePopup() {
+        document.getElementById("popup").classList.add("hidden");
+        document.body.classList.remove("overflow-hidden");
       }
-
-      // Animation setup
-      const playlist = ['high_spenders', 'browsers', 'loyal_customers', 'bargain_hunters'];
-      let currentIndex = 0;
-
-      function updateElement(selector, action) {
-        const element = document.querySelector(selector);
-        if (element) action(element);
+      function showPopup() {
+        document.getElementById("popup").classList.remove("hidden");
+        document.body.classList.add("overflow-hidden");
       }
+      document.addEventListener("DOMContentLoaded", () => {
+        // Check URL parameter for button text
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("variant")) {
+          document.getElementById("start").classList.remove("hidden");
+        } else {
+          document.getElementById("subscribe").classList.remove("hidden");
+        }
 
-      function transition() {
-        const current = playlist[currentIndex];
-        const next = playlist[(currentIndex + 1) % playlist.length];
+        // Animation setup
+        const playlist = [
+          "high_spenders",
+          "browsers",
+          "loyal_customers",
+          "bargain_hunters",
+        ];
+        let currentIndex = 0;
 
-        // Update background
-        const header = document.querySelector('header');
-        const newOverlay = document.createElement('div');
-        newOverlay.className = 'background-overlay';
-        newOverlay.style.backgroundImage = `url('./assets/background--${next}.jpg')`;
-        header.insertBefore(newOverlay, header.firstChild);
-        setTimeout(() => newOverlay.style.opacity = '1', 0);
+        function updateElement(selector, action) {
+          const element = document.querySelector(selector);
+          if (element) action(element);
+        }
 
-        updateElement('.background-overlay:not(:first-child)', el => {
-          el.style.opacity = '0';
-          setTimeout(() => el.remove(), 1000);
-        });
+        function transition() {
+          const current = playlist[currentIndex];
+          const next = playlist[(currentIndex + 1) % playlist.length];
 
-        // Update labels
-        const labelsContainer = document.getElementById('labels');
-        updateElement(`#label--${current}`, el => {
-          el.style.transform = 'translateX(100%)';
-          el.style.opacity = '0';
-        });
+          // Update background
+          const header = document.querySelector("header");
+          const newOverlay = document.createElement("div");
+          newOverlay.className = "background-overlay";
+          newOverlay.style.backgroundImage = `url('./assets/background--${next}.jpg')`;
+          header.insertBefore(newOverlay, header.firstChild);
+          setTimeout(() => (newOverlay.style.opacity = "1"), 0);
 
-        updateElement(`#label--${next}`, el => {
-          el.classList.remove('hidden');
-          el.style.transform = 'translateX(-100%)';
-          setTimeout(() => {
-            labelsContainer.style.width = `${el.offsetWidth}px`;
-            el.style.transform = 'translateX(0)';
-            el.style.opacity = '1';
-          }, 50);
-        });
-
-        setTimeout(() => {
-          updateElement(`#label--${current}`, el => {
-            el.classList.add('hidden');
-            el.style.transform = '';
-            el.style.opacity = '';
+          updateElement(".background-overlay:not(:first-child)", (el) => {
+            el.style.opacity = "0";
+            setTimeout(() => el.remove(), 1000);
           });
-        }, 550);
 
-        // Update thumbnails
-        updateElement(`#thumb--${current}`, el => el.classList.add('fade-out'));
-        
-        setTimeout(() => {
-          updateElement(`#thumb--${current}`, el => {
-            el.classList.remove('fade-out', 'hidden');
-            document.querySelector('#thumbs').insertBefore(el, document.querySelector('#thumbs').firstChild);
-            setTimeout(() => el.classList.add('fade-in'), 0);
-            setTimeout(() => el.classList.remove('fade-in'), 500);
+          // Update labels
+          const labelsContainer = document.getElementById("labels");
+          updateElement(`#label--${current}`, (el) => {
+            el.style.transform = "translateX(100%)";
+            el.style.opacity = "0";
           });
-          updateElement(`#thumb--${next}`, el => el.classList.add('hidden'));
-        }, 500);
 
-        currentIndex = (currentIndex + 1) % playlist.length;
-      }
-
-      // Initial setup
-      updateElement('header', header => {
-        const initialOverlay = document.createElement('div');
-        initialOverlay.className = 'background-overlay';
-        initialOverlay.style.backgroundImage = `url('./assets/background--${playlist[0]}.jpg')`;
-        initialOverlay.style.opacity = '1';
-        header.insertBefore(initialOverlay, header.firstChild);
-      });
-
-      function initializeLabels() {
-        const labelsContainer = document.getElementById('labels');
-        playlist.forEach((segment, index) => {
-          updateElement(`#label--${segment}`, el => {
-            if (index === 0) {
-              el.classList.remove('hidden');
-              el.style.opacity = '1';
-              // Force a reflow to ensure the element's dimensions are calculated
-              el.offsetHeight;
+          updateElement(`#label--${next}`, (el) => {
+            el.classList.remove("hidden");
+            el.style.transform = "translateX(-100%)";
+            setTimeout(() => {
               labelsContainer.style.width = `${el.offsetWidth}px`;
-            } else {
-              el.classList.add('hidden');
-              el.style.opacity = '0';
-            }
+              el.style.transform = "translateX(0)";
+              el.style.opacity = "1";
+            }, 50);
           });
-          updateElement(`#thumb--${segment}`, el => {
-            el.classList.toggle('hidden', index === 0);
-          });
+
+          setTimeout(() => {
+            updateElement(`#label--${current}`, (el) => {
+              el.classList.add("hidden");
+              el.style.transform = "";
+              el.style.opacity = "";
+            });
+          }, 550);
+
+          // Update thumbnails
+          updateElement(`#thumb--${current}`, (el) =>
+            el.classList.add("fade-out")
+          );
+
+          setTimeout(() => {
+            updateElement(`#thumb--${current}`, (el) => {
+              el.classList.remove("fade-out", "hidden");
+              document
+                .querySelector("#thumbs")
+                .insertBefore(el, document.querySelector("#thumbs").firstChild);
+              setTimeout(() => el.classList.add("fade-in"), 0);
+              setTimeout(() => el.classList.remove("fade-in"), 500);
+            });
+            updateElement(`#thumb--${next}`, (el) =>
+              el.classList.add("hidden")
+            );
+          }, 500);
+
+          currentIndex = (currentIndex + 1) % playlist.length;
+        }
+
+        // Initial setup
+        updateElement("header", (header) => {
+          const initialOverlay = document.createElement("div");
+          initialOverlay.className = "background-overlay";
+          initialOverlay.style.backgroundImage = `url('./assets/background--${playlist[0]}.jpg')`;
+          initialOverlay.style.opacity = "1";
+          header.insertBefore(initialOverlay, header.firstChild);
         });
-      }
 
-      // Use requestAnimationFrame to ensure DOM is ready
-      requestAnimationFrame(() => {
-        initializeLabels();
-        // Start transitions after a short delay
-        setTimeout(() => setInterval(transition, 5000), 100);
+        function initializeLabels() {
+          const labelsContainer = document.getElementById("labels");
+          playlist.forEach((segment, index) => {
+            updateElement(`#label--${segment}`, (el) => {
+              if (index === 0) {
+                el.classList.remove("hidden");
+                el.style.opacity = "1";
+                // Force a reflow to ensure the element's dimensions are calculated
+                el.offsetHeight;
+                labelsContainer.style.width = `${el.offsetWidth}px`;
+              } else {
+                el.classList.add("hidden");
+                el.style.opacity = "0";
+              }
+            });
+            updateElement(`#thumb--${segment}`, (el) => {
+              el.classList.toggle("hidden", index === 0);
+            });
+          });
+        }
+
+        // Use requestAnimationFrame to ensure DOM is ready
+        requestAnimationFrame(() => {
+          initializeLabels();
+          // Start transitions after a short delay
+          setTimeout(() => setInterval(transition, 5000), 100);
+        });
       });
-    });
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
