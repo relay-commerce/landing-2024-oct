@@ -86,11 +86,18 @@
     <style>
       #labels {
         position: relative;
-        height: 58px; /* Adjust based on your label height */
+        height: 34px;
         overflow: hidden;
         display: inline-flex;
-        transition: width 0.5s ease-in-out;
+        transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
       }
+
+      @media (min-width: 1024px) {
+        #labels {
+          height: 44px;
+        }
+      }
+
       #labels > div {
         position: absolute;
         transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -106,8 +113,9 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-size: cover;
-        background-position: center;
+        background-size: 100%;
+        background-position: bottom;
+        background-repeat: no-repeat;
         opacity: 0;
         transition: opacity 1s ease-in-out;
         z-index: 1;
@@ -127,8 +135,7 @@
     </style>
   </head>
 
-  <body
-    class="relative bg-[url('./assets/background-pattern.png')] bg-repeat bg-[length:12px_12px] bg-fixed text-gray-700 font-['Pulp_Display']">
+  <body class="relative bg-[url('./assets/background-pattern.png')] bg-repeat bg-[length:12px_12px] bg-fixed text-gray-700 font-['Pulp_Display']">
     <div
       class="fixed inset-0 backdrop-blur-sm z-50 hidden"
       id="popup">
@@ -171,7 +178,7 @@
       </dialog>
     </div>
 
-    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-9">
+    <div class="max-w-6xl mx-auto p-4 lg:p-6 flex flex-col gap-4 lg:gap-6">
       <div
         id="pending"
         class="bg-black rounded-[20px] h-[160px] flex flex-col gap-3 justify-center text-purple-200 hidden">
@@ -189,24 +196,29 @@
       </div>
       <header
         class="bg-purple-200 w-full h-auto bg-[url('./assets/background--high_spenders.jpg')] bg-cover bg-center rounded-[48px]">
-        <div class="p-16 flex flex-col gap-20">
+        <div class="p-8 md:p-10 lg:p-12 flex flex-col gap-8">
           <div>
-            <h3 class="text-3xl text-gray-800 mb-2">Introducing Relay</h3>
+            <div class="flex gap-2">
+              <img class="h-7 w-7" src="./assets/relay-logo.svg" alt="relay logo">
+              <h3 class="text-2xl text-gray-800 mb-2">Introducing Relay</h3>
+            </div>
             <h1
-              class="text-4xl md:text-6xl font-bold text-gray-800 mb-4 md:leading-[3.5rem]">
+              class="text-2xl md:text-4xl font-bold text-gray-800 mb-4 leading-3 md:leading-none lg:leading-5 pt-2 md:pt-0 lg:pt-2">
               Show meaningful content<br />
               to the right
               <div
                 id="labels"
-                class="inline-flex translate-y-2">
+                class="inline-flex translate-y-2.5 md:translate-y-1 lg:translate-y-3 text-sm lg:text-2xl">
                 <div
                   id="label--browsers"
-                  class="hidden inline-flex items-center bg-green-500 text-white rounded-full p-2 pr-4 text-base font-medium">
-                  <div class="bg-green-600 rounded-full p-2 mr-2">
+                  class="hidden inline-flex items-center bg-green-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
+                  <div class="bg-green-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="26"
                       height="26"
+                      viewBox="0 0 26 26"
+                      class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px]"
                       fill="none">
                       <path
                         fill="#f2f4ef"
@@ -219,12 +231,14 @@
                 </div>
                 <div
                   id="label--bargain_hunters"
-                  class="hidden inline-flex items-center bg-pink-500 text-white rounded-full p-2 pr-4 text-base font-medium">
-                  <div class="bg-pink-600 rounded-full p-2 mr-2">
+                  class="hidden inline-flex items-center bg-pink-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
+                  <div class="bg-pink-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="26"
                       height="26"
+                      viewBox="0 0 26 26"
+                      class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px]"
                       fill="none">
                       <path
                         fill="#faf0f4"
@@ -237,12 +251,14 @@
                 </div>
                 <div
                   id="label--loyal_customers"
-                  class="hidden inline-flex items-center bg-orange-500 text-white rounded-full p-2 pr-4 text-base font-medium">
-                  <div class="bg-orange-600 rounded-full p-2 mr-2">
+                  class="hidden inline-flex items-center bg-orange-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
+                  <div class="bg-orange-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="26"
                       height="26"
+                      viewBox="0 0 26 26"
+                      class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px]"
                       fill="none">
                       <path
                         fill="#fff7f4"
@@ -255,12 +271,14 @@
                 </div>
                 <div
                   id="label--high_spenders"
-                  class="hidden inline-flex items-center bg-purple-500 text-white rounded-full p-2 pr-4 text-base font-medium">
-                  <div class="bg-purple-600 rounded-full p-2 mr-2">
+                  class="hidden inline-flex items-center bg-purple-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
+                  <div class="bg-purple-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="26"
                       height="26"
+                      viewBox="0 0 26 26"
+                      class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px]"
                       fill="none">
                       <path
                         fill="#f5f0ff"
@@ -274,75 +292,70 @@
               </div>
               customers.
             </h1>
-            <p class="text-lg text-gray-800">
+            <p class="text-base text-gray-800">
               The marketing suite you have been waiting for.
             </p>
           </div>
 
           <div
             id="thumbs"
-            class="flex flex-row gap-7">
+            class="flex flex-row gap-5">
             <div
               id="thumb--high_spenders"
-              class="bg-purple-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--high_spenders.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-              <h3 class="text-xl font-medium text-purple-800">High Spenders</h3>
+              class="bg-purple-300 pt-4 md:pt-4 lg:pt-8 rounded-[34px] md:rounded-[40px] lg:rounded-[47px] text-center flex flex-col justify-start h-[128px] md:h-[150px] lg:h-[186px] w-[68px] md:w-[80px] lg:w-[94px] bg-[url('./assets/thumb--high_spenders.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+              <h3 class="text-xs md:text-sm font-medium text-purple-800">High<br> Spenders</h3>
             </div>
             <div
               id="thumb--bargain_hunters"
-              class="bg-pink-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--bargain_hunters.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-              <h3 class="text-xl font-medium text-pink-800">Bargain Hunters</h3>
+              class="bg-pink-300 pt-4 md:pt-4 lg:pt-8 rounded-[34px] md:rounded-[40px] lg:rounded-[47px] text-center flex flex-col justify-start h-[128px] md:h-[150px] lg:h-[186px] w-[68px] md:w-[80px] lg:w-[94px] bg-[url('./assets/thumb--bargain_hunters.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+              <h3 class="text-xs md:text-sm font-medium text-pink-800">Bargain<br> Hunters</h3>
             </div>
             <div
               id="thumb--loyal_customers"
-              class="bg-orange-200 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--loyal_customers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-              <h3 class="text-xl font-medium text-orange-800">
-                Loyal Customers
-              </h3>
+              class="bg-orange-200 pt-4 md:pt-4 lg:pt-8 rounded-[34px] md:rounded-[40px] lg:rounded-[47px] text-center flex flex-col justify-start h-[128px] md:h-[150px] lg:h-[186px] w-[68px] md:w-[80px] lg:w-[94px] bg-[url('./assets/thumb--loyal_customers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+              <h3 class="text-xs md:text-sm font-medium text-orange-800">Loyal<br> Customers</h3>
             </div>
             <div
               id="thumb--browsers"
-              class="bg-green-300 px-6 pt-12 rounded-[80px] text-center flex flex-col justify-start h-[280px] w-[140px] bg-[url('./assets/thumb--browsers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
-              <h3 class="text-xl font-medium text-green-800">Browsers</h3>
+              class="bg-green-300 pt-4 md:pt-4 lg:pt-8 rounded-[34px] md:rounded-[40px] lg:rounded-[47px] text-center flex flex-col justify-start h-[128px] md:h-[150px] lg:h-[186px] w-[68px] md:w-[80px] lg:w-[94px] bg-[url('./assets/thumb--browsers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+              <h3 class="text-xs md:text-sm font-medium text-green-800">Browsers</h3>
             </div>
           </div>
         </div>
       </header>
 
-      <div class="flex flex-col md:flex-row gap-9">
-        <div
-          class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-1/2">
+      <div class="flex flex-col md:flex-row gap-4 lg:gap-6">
+        <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-2/5">
           <div
             class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
             Maximize conversions by taking control over your website
           </div>
           <div
             class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
-            Relay lets you tailor user experience based on behavior and
-            prediction. Show dynamic blocks that reflect what the person is most
-            likely to convert from
+            Relay lets you tailor user experience based on behavior and prediction. Show dynamic blocks that reflect what the person is most likely to convert from.
           </div>
-          <img
+          <!-- <img
             src="./assets/relay.svg"
             class="w-32 h-auto mt-4"
-            alt="Relay logo" />
+            alt="Relay logo" /> -->
         </div>
-        <img
-          src="./assets/shop-now.svg"
-          class="w-full md:w-1/2 h-auto"
-          alt="Graphical element" />
+        <div class="w-full md:w-3/5 bg-gray-50 rounded-3xl p-8">
+          <img
+            src="./assets/shop-now.svg"
+            class="w-full md:w-1/2 h-[200px]"
+            alt="Graphical element" />
+        </div>
       </div>
 
-      <div class="flex flex-col md:flex-row gap-9">
-        <div
-          class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-1/3">
+      <div class="flex flex-col md:flex-row gap-4 lg:gap-6">
+        <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-2/5">
           <div
             class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
             Display different content to different segments of visitors
           </div>
           <div
             class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
-            Dynamic Blocks, Pop-Ups and Notifications, and more to come. Display
-            different content to different segments of visitors.
+            Dynamic Blocks, Pop-Ups and Notifications, and more to come. Display different content to different segments of visitors.
           </div>
           <div
             class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
@@ -350,17 +363,17 @@
           </div>
         </div>
         <div
-          class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-2/3 md:order-first">
+          class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-3/5 md:order-first">
           <img
             src="./assets/unleash.svg"
-            class="w-full h-auto"
+            class="w-full h-[200px]"
             alt="Graphical element" />
         </div>
       </div>
 
       <div
         id="cta"
-        class="rounded-3xl bg-gray-300 backdrop-blur flex p-6 md:p-12 flex-col justify-center items-start gap-6 bg-[url('./assets/card-background.svg')] bg-no-repeat bg-right-bottom bg-contain">
+        class="rounded-3xl bg-gray-300 backdrop-blur flex p-6 md:p-12 flex-col justify-center items-start gap-4 lg:gap-6 bg-[url('./assets/card-background.svg')] bg-no-repeat bg-right-bottom bg-contain">
         <div
           class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
           Join the waitlist
@@ -372,8 +385,8 @@
           action="https://www.relaycommerce.io"
           method="get"
           id="subscribe"
-          class="hidden flex flex-col gap-6 w-full">
-          <div class="flex flex-col md:flex-row gap-6 w-full">
+          class="hidden flex flex-col gap-4 lg:gap-6 w-full">
+          <div class="flex flex-col md:flex-row gap-4 lg:gap-6 w-full">
             <div class="flex flex-col gap-0.5 w-full md:w-1/2">
               <label class="text-gray-900 text-xs font-semibold leading-normal">
                 Email</label
