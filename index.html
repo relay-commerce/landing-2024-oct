@@ -169,7 +169,23 @@
         </div>
       </dialog>
     </div>
+
     <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-9">
+      <div
+        id="pending"
+        class="bg-black rounded-[20px] h-[160px] flex flex-col gap-3 justify-center text-purple-200 hidden">
+        <div class="flex flex-row justify-center items-center gap-1">
+          <img
+            src="./assets/relay-white.svg"
+            alt="logo"
+            width="22"
+            height="22" />
+          <div class="text-base">Thanks for applying!</div>
+        </div>
+        <div class="flex flex-row justify-center">
+          <div class="text-4xl">We’ll be in touch shortly via email!</div>
+        </div>
+      </div>
       <header
         class="bg-purple-200 w-full h-auto bg-[url('./assets/background--high_spenders.jpg')] bg-cover bg-center rounded-[48px]">
         <div class="p-16 flex flex-col gap-20">
@@ -342,6 +358,7 @@
       </div>
 
       <div
+        id="cta"
         class="rounded-3xl bg-gray-300 backdrop-blur flex p-6 md:p-12 flex-col justify-center items-start gap-6 bg-[url('./assets/card-background.svg')] bg-no-repeat bg-right-bottom bg-contain">
         <div
           class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
@@ -397,6 +414,9 @@
     </div>
 
     <script>
+      const variant =
+        new URLSearchParams(window.location.search).get("variant") || "A";
+
       function hidePopup() {
         document.getElementById("popup").classList.add("hidden");
         document.body.classList.remove("overflow-hidden");
@@ -406,12 +426,15 @@
         document.body.classList.add("overflow-hidden");
       }
       document.addEventListener("DOMContentLoaded", () => {
-        // Check URL parameter for button text
+        // Check URL parameter form management
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get("variant")) {
+        if (variant === "A") {
           document.getElementById("start").classList.remove("hidden");
-        } else {
+        } else if (variant === "B") {
           document.getElementById("subscribe").classList.remove("hidden");
+        } else if (variant === 'C') {
+          document.getElementById("pending").classList.remove("hidden");
+          document.getElementById("cta").classList.add("hidden");
         }
 
         // Animation setup
