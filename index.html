@@ -169,8 +169,6 @@
           </div>
           <a
             id="access-request-link"
-            href="https://www.shopify.com/"
-            target="_parent"
             class="text-white text-xs text-center font-medium leading-4 mt-4 rounded-lg bg-blue-600 py-3 px-5 md:w-auto">
             Continue to approve
           </a>
@@ -430,8 +428,14 @@
     <script>
       const params = new URLSearchParams(window.location.search);
       const variant = params.get("variant") || "A";
-      const grantAccessLink = params.get("grant-access-url") || "https://myshopify.com";
 
+      document.querySelector('#access-request-link').addEventListener('click', () => {
+        window.parent.postMessage({ type: "RelayPlatformModalButton" }, '*')
+      })
+
+      window.addEventListener("message", function(event) {
+        console.log('PARRENT CALLING THE CHILD METHOD');
+      });
       function hidePopup() {
         document.getElementById("popup").classList.add("hidden");
         document.body.classList.remove("overflow-hidden");
@@ -444,7 +448,6 @@
         const urlParams = new URLSearchParams(window.location.search);
         if (variant === "A") {
           document.getElementById("start").classList.remove("hidden");
-          document.getElementById("access-request-link").href = grantAccessLink;
         } else if (variant === "B") {
           document.getElementById("subscribe").classList.remove("hidden");
         } else if (variant === "C") {
