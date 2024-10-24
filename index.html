@@ -169,9 +169,7 @@
           </div>
           <a
             id="access-request-link"
-            href="https://www.shopify.com/"
-            target="_parent"
-            class="text-white text-xs text-center font-medium leading-4 mt-4 rounded-lg bg-blue-600 py-3 px-5 md:w-auto">
+            class="text-white text-xs text-center font-medium leading-4 mt-4 rounded-lg bg-blue-600 py-3 px-5 md:w-auto cursor-pointer">
             Continue to approve
           </a>
         </div>
@@ -381,47 +379,22 @@
         <div class="text-sm md:text-base font-normal leading-normal">
           Provide high impact experiences to make every website visit count.
         </div>
-        <form
-          action="https://www.relaycommerce.io"
-          method="get"
+        <div
           id="subscribe"
           class="hidden flex flex-col gap-4 lg:gap-6 w-full">
-          <div class="flex flex-col md:flex-row gap-4 lg:gap-6 w-full">
-            <div class="flex flex-col gap-0.5 w-full md:w-1/2">
-              <label class="text-gray-900 text-xs font-semibold leading-normal">
-                Email</label
-              >
-              <input
-                name="email"
-                type="email"
-                class="h-10 w-full p-2 rounded-lg border border-gray-300 bg-gray-50 placeholder:text-gray-500 placeholder:text-xs"
-                placeholder="Enter email address" />
-            </div>
-            <div class="flex flex-col gap-0.5 w-full md:w-1/2">
-              <label class="text-gray-900 text-xs font-semibold leading-normal">
-                Website URL</label
-              >
-              <input
-                type="url"
-                name="url"
-                class="h-10 w-full p-2 rounded-lg border border-gray-300 bg-gray-50 placeholder:text-gray-500 placeholder:text-xs"
-                placeholder="Enter website URL" />
-            </div>
-          </div>
           <button
-            type="submit"
+            id="form-unapproved-offered-button"
             class="text-white text-xs font-medium leading-4 rounded-lg bg-blue-600 min-h-[44px] py-3 px-5 max-w-[145px] md:w-auto">
-            <span class="pt-0.5">Request Access</span>
+            <span class="pt-0.5">Get Started</span>
           </button>
-        </form>
+        </div>
         <div
           id="start"
           class="hidden">
           <button
-            type="submit"
-            class="text-white text-xs font-medium leading-4 rounded-lg bg-blue-600 min-h-[44px] py-3 px-5 w-[145px] md:w-auto"
+            class="text-white text-xs font-medium leading-4 rounded-lg bg-blue-600 min-h-[44px] py-3 px-5 w-[145px] md:w-auto cursor-pointer"
             onclick="showPopup()">
-            <span class="pt-0.5">Get Started</span>
+            <span id="modal-window-get-started-button" class="pt-0.5">Get Started</span>
           </button>
         </div>
       </div>
@@ -430,7 +403,18 @@
     <script>
       const params = new URLSearchParams(window.location.search);
       const variant = params.get("variant") || "A";
-      const grantAccessLink = params.get("grant-access-url") || "https://myshopify.com";
+
+      document.querySelector('#modal-window-get-started-button').addEventListener('click', () => {
+        window.parent.postMessage({ type: 'RelayPlatformOpenModal'}, '*')
+      })
+
+      document.querySelector('#access-request-link').addEventListener('click', () => {
+        window.parent.postMessage({ type: "RelayPlatformModalButton" }, '*')
+      })
+
+      document.querySelector('#form-unapproved-offered-button').addEventListener('click', () => {
+        window.parent.postMessage({ type: "RelayPlatformUnapprovedOfferedButton" }, '*')
+      })
 
       function hidePopup() {
         document.getElementById("popup").classList.add("hidden");
@@ -441,10 +425,8 @@
         document.body.classList.add("overflow-hidden");
       }
       document.addEventListener("DOMContentLoaded", () => {
-        const urlParams = new URLSearchParams(window.location.search);
         if (variant === "A") {
           document.getElementById("start").classList.remove("hidden");
-          document.getElementById("access-request-link").href = grantAccessLink;
         } else if (variant === "B") {
           document.getElementById("subscribe").classList.remove("hidden");
         } else if (variant === "C") {

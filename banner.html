@@ -147,7 +147,7 @@
               </div>
             
             <div class="flex flex-col justify-end">
-                <button class="text-sm lg:text-base bg-gray-900 text-white py-3 px-6 rounded-xl whitespace-nowrap flex-shrink-0">Learn more</button>
+                <button id="relay-onboarding-banner-learn-more-button" class="text-sm lg:text-base bg-gray-900 text-white py-3 px-6 rounded-xl whitespace-nowrap flex-shrink-0">Learn more</button>
             </div>
         </div>
     </div>
@@ -163,6 +163,9 @@
                 document.getElementById('product').textContent = productName;
             }
         });
+        document.querySelector('#relay-onboarding-banner-learn-more-button').addEventListener('click', () => {
+            window.parent.postMessage({ type: "RelayPlatformBannerButton" }, '*')
+        })
     </script>
 </body>
 
