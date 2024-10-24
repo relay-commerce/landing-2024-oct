@@ -161,6 +161,7 @@
             out of Fomo.
           </div>
           <a
+            id="access-request-link"
             href="https://www.shopify.com/"
             target="_parent"
             class="text-white text-xs text-center font-medium leading-4 mt-4 rounded-lg bg-blue-600 py-3 px-5 md:w-auto">
@@ -414,8 +415,9 @@
     </div>
 
     <script>
-      const variant =
-        new URLSearchParams(window.location.search).get("variant") || "A";
+      const params = new URLSearchParams(window.location.search);
+      const variant = params.get("variant") || "A";
+      const grantAccessLink = params.get("grant-access-url") || "https://myshopify.com";
 
       function hidePopup() {
         document.getElementById("popup").classList.add("hidden");
@@ -426,13 +428,13 @@
         document.body.classList.add("overflow-hidden");
       }
       document.addEventListener("DOMContentLoaded", () => {
-        // Check URL parameter form management
         const urlParams = new URLSearchParams(window.location.search);
         if (variant === "A") {
           document.getElementById("start").classList.remove("hidden");
+          document.getElementById("access-request-link").href = grantAccessLink;
         } else if (variant === "B") {
           document.getElementById("subscribe").classList.remove("hidden");
-        } else if (variant === 'C') {
+        } else if (variant === "C") {
           document.getElementById("pending").classList.remove("hidden");
           document.getElementById("cta").classList.add("hidden");
         }
