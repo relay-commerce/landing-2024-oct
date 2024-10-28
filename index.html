@@ -7,6 +7,8 @@
       content="width=device-width, initial-scale=1.0" />
     <title>Relay landing</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script>
       tailwind.config = {
         theme: {
@@ -132,10 +134,60 @@
         opacity: 1;
         transition: opacity 0.5s ease-in-out;
       }
+      .feature-carousel .swiper-button-next,
+      .feature-carousel .swiper-button-prev {
+        color: #484848;
+      }
+      
+      .feature-carousel .swiper-button-next:after,
+      .feature-carousel .swiper-button-prev:after {
+        font-size: 20px;
+      }
+      
+      .swiper-slide {
+        height: auto;
+      }
+
+      .feature-carousel {
+        overflow: visible;
+        padding-right: 24px;
+        margin-right: -24px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .feature-carousel .swiper-wrapper {
+        transition-timing-function: ease-out;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: none;
+      }
+
+      .feature-carousel::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .feature-carousel::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+
+      .feature-carousel::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+      }
+
+      .feature-carousel::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      html, body {
+        overflow-x: hidden;
+        position: relative;
+        width: 100%;
+      }
     </style>
   </head>
 
-  <body class="relative bg-[url('./assets/background-pattern.png')] bg-repeat bg-[length:12px_12px] bg-fixed text-gray-700 font-['Pulp_Display']">
+  <body class="relative bg-[url('./assets/background-pattern.png')] bg-repeat bg-[length:12px_12px] bg-fixed text-gray-700 font-['Pulp_Display'] overflow-x-hidden">
     <div
       class="fixed inset-0 backdrop-blur-sm z-50 hidden"
       id="popup">
@@ -189,7 +241,7 @@
           <div class="text-base">Thanks for applying!</div>
         </div>
         <div class="flex flex-row justify-center">
-          <div class="text-4xl">We’ll be in touch shortly via email!</div>
+          <div class="text-4xl">Well be in touch shortly via email!</div>
         </div>
       </div>
       <header
@@ -201,9 +253,9 @@
               <h3 class="text-2xl text-gray-800 mb-2">Introducing Relay</h3>
             </div>
             <h1
-              class="text-2xl md:text-4xl font-bold text-gray-800 mb-4 leading-3 md:leading-none lg:leading-5 pt-2 md:pt-0 lg:pt-2">
-              Show meaningful content<br />
-              to the right
+              class="text-2xl md:text-4xl font-bold text-gray-800 mb-4 leading-3 md:leading-none lg:leading-12 pt-2 md:pt-0 lg:pt-2">
+              Personalize customer<br />
+              journey to
               <div
                 id="labels"
                 class="inline-flex translate-y-2.5 md:translate-y-1 lg:translate-y-3 text-sm lg:text-2xl">
@@ -225,7 +277,7 @@
                         clip-rule="evenodd" />
                     </svg>
                   </div>
-                  <span>Browsers</span>
+                  <span>engage brand loyalists</span>
                 </div>
                 <div
                   id="label--bargain_hunters"
@@ -288,7 +340,8 @@
                   <span>High Spenders</span>
                 </div>
               </div>
-              customers.
+              and turn <br>
+              every store visit into a sale
             </h1>
             <p class="text-base text-gray-800">
               The marketing suite you have been waiting for.
@@ -322,50 +375,103 @@
         </div>
       </header>
 
-      <div class="flex flex-col md:flex-row gap-4 lg:gap-6">
-        <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-2/5">
-          <div
-            class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
-            Maximize conversions by taking control over your website
-          </div>
-          <div
-            class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
-            Relay lets you tailor user experience based on behavior and prediction. Show dynamic blocks that reflect what the person is most likely to convert from.
-          </div>
-          <!-- <img
-            src="./assets/relay.svg"
-            class="w-32 h-auto mt-4"
-            alt="Relay logo" /> -->
-        </div>
-        <div class="w-full md:w-3/5 bg-gray-50 rounded-3xl p-8">
-          <img
-            src="./assets/shop-now.svg"
-            class="w-full md:w-1/2 h-[260px]"
-            alt="Graphical element" />
-        </div>
-      </div>
+      <div class="relative w-screen left-1/2 right-1/2 -mx-[50vw] overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 lg:px-6">
+          <div class="my-8 lg:my-12">
+            <div class="swiper feature-carousel relative">
+              <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                  <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[400px]">
+                    <div class="w-full h-32 bg-purple-100 p-4">
+                      <!-- Illustration placeholder -->
+                      <img src="[your-illustration-1]" alt="Segment and Target" class="w-full h-full object-contain">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                      <h3 class="text-xl font-bold text-gray-800 mb-2">Segment and Target</h3>
+                      <p class="text-sm text-gray-600 font-medium mb-2">Leaving $$$ on the table by treating every customer the same?</p>
+                      <p class="text-sm text-gray-600">Segment Shopify customers by buying intent, reaching the right person with the right offer that lands every time—no more missed chances.</p>
+                    </div>
+                  </div>
+                </div>
 
-      <div class="flex flex-col md:flex-row gap-4 lg:gap-6">
-        <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-2/5">
-          <div
-            class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
-            Display different content to different segments of visitors
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                  <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[400px]">
+                    <div class="w-full h-32 bg-pink-100 p-4">
+                      <!-- Illustration placeholder -->
+                      <img src="[your-illustration-2]" alt="Smarter Campaigns" class="w-full h-full object-contain">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                      <h3 class="text-xl font-bold text-gray-800 mb-2">Smarter Campaigns</h3>
+                      <p class="text-sm text-gray-600 font-medium mb-2">Not personalizing your store experience? You're missing out.</p>
+                      <p class="text-sm text-gray-600">Boost conversions with campaigns that adapt to each visitor. Think personalized pop-ups, notifications, and banners that deliver exactly what customers need—from special discounts to best-seller reminders.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                  <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[400px]">
+                    <div class="w-full h-32 bg-orange-100 p-4">
+                      <!-- Illustration placeholder -->
+                      <img src="[your-illustration-3]" alt="Speedy Go-to-market" class="w-full h-full object-contain">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                      <h3 class="text-xl font-bold text-gray-800 mb-2">Speedy Go-to-market</h3>
+                      <p class="text-sm text-gray-600 font-medium mb-2">Need a quicker go-to-market for new products?</p>
+                      <p class="text-sm text-gray-600">Get there faster with pre-launch surveys and teaser campaigns to create buzz among loyal customers and capture early interest.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="swiper-slide">
+                  <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[400px]">
+                    <div class="w-full h-32 bg-green-100 p-4">
+                      <!-- Illustration placeholder -->
+                      <img src="[your-illustration-4]" alt="Effortless, On-Brand Designs" class="w-full h-full object-contain">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                      <h3 class="text-xl font-bold text-gray-800 mb-2">Effortless, On-Brand Designs</h3>
+                      <p class="text-sm text-gray-600 font-medium mb-2">Building assets for each campaign taking too long?</p>
+                      <p class="text-sm text-gray-600">Say goodbye to design delays! Quickly create branded website blocks, notifications, and pop-ups with easy, on-brand customizations.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slide 5 -->
+                <div class="swiper-slide">
+                  <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[400px]">
+                    <div class="w-full h-32 bg-blue-100 p-4">
+                      <!-- Illustration placeholder -->
+                      <img src="[your-illustration-5]" alt="Unified Campaign Management" class="w-full h-full object-contain">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                      <h3 class="text-xl font-bold text-gray-800 mb-2">Unified Campaign Management</h3>
+                      <p class="text-sm text-gray-600 font-medium mb-2">Managing multiple campaigns across segments feeling complex?</p>
+                      <p class="text-sm text-gray-600">Get a streamlined workflow—manage every segment and campaign from a single, powerful view.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slide 6 -->
+                <div class="swiper-slide">
+                  <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[400px]">
+                    <div class="w-full h-32 bg-purple-100 p-4">
+                      <!-- Illustration placeholder -->
+                      <img src="[your-illustration-6]" alt="Data-driven Actions" class="w-full h-full object-contain">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                      <h3 class="text-xl font-bold text-gray-800 mb-2">Data-driven Actions</h3>
+                      <p class="text-sm text-gray-600 font-medium mb-2">Wondering which campaign or creative drives sales?</p>
+                      <p class="text-sm text-gray-600">Drill down into detailed analytics to see exactly which reviews or product suggestions are driving clicks and boosting sales.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div
-            class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
-            Dynamic Blocks, Pop-Ups and Notifications, and more to come. Display different content to different segments of visitors.
-          </div>
-          <div
-            class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
-            All based on their individual data.
-          </div>
-        </div>
-        <div
-          class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-3/5 md:order-first">
-          <img
-            src="./assets/unleash.svg"
-            class="w-full h-[260px]"
-            alt="Graphical element" />
         </div>
       </div>
 
@@ -547,6 +653,56 @@
           initializeLabels();
           // Start transitions after a short delay
           setTimeout(() => setInterval(transition, 5000), 100);
+        });
+
+        // Initialize Swiper
+        const swiper = new Swiper('.feature-carousel', {
+          slidesPerView: 'auto',
+          spaceBetween: 24,
+          grabCursor: true,
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: true,
+          },
+          freeMode: {
+            enabled: true,
+            sticky: true,
+            momentumRatio: 0.25,
+            momentumVelocityRatio: 0.5,
+          },
+          keyboard: {
+            enabled: true,
+          },
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+          },
+          breakpoints: {
+            // mobile
+            320: {
+              slidesPerView: 1.2,
+              spaceBetween: 16
+            },
+            // tablet
+            512: {
+              slidesPerView: 2.2,
+              spaceBetween: 24
+            },
+            // desktop
+            1024: {
+              slidesPerView: 3.2,
+              spaceBetween: 24
+            }
+          }
+        });
+
+        // Optional: Pause autoplay on hover
+        const featureCarousel = document.querySelector('.feature-carousel');
+        featureCarousel.addEventListener('mouseenter', () => {
+          swiper.autoplay.stop();
+        });
+        featureCarousel.addEventListener('mouseleave', () => {
+          swiper.autoplay.start();
         });
       });
     </script>
