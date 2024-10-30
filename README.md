@@ -12,6 +12,12 @@ npm install
 npm run dev
 ```
 
+## Deploy
+
+```bash
+npm run deploy
+```
+
 
 # Variants
 * http://127.0.0.1:8080/?variant=A&grant-access-url=<url> (variant A, default, for handpicked approved users, need to provide URL to grant access)
