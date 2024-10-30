@@ -7,8 +7,6 @@
       content="width=device-width, initial-scale=1.0" />
     <title>Relay landing</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script>
       tailwind.config = {
         theme: {
@@ -16,7 +14,6 @@
             colors: {
               gray: {
                 50: "#f7f7f7",
-                75: "#f5f5f7",
                 100: "#f3f3f3",
                 125: "#eeeeee",
                 150: "#e9e9e9",
@@ -66,7 +63,7 @@
                 800: "#992e1f",
                 900: "#66170f",
               },
-              primary: {
+              purple: {
                 50: "#f5f0ff",
                 100: "#ebe0ff",
                 200: "#d7c2ff",
@@ -89,18 +86,15 @@
     <style>
       #labels {
         position: relative;
-        height: 41px;
+        height: 34px;
         overflow: hidden;
         display: inline-flex;
         transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
-        vertical-align: middle;
-        /* margin-bottom: -8px; */
       }
 
       @media (min-width: 1024px) {
         #labels {
-          height: 48px;
-          /* margin-bottom: -10px; */
+          height: 44px;
         }
       }
 
@@ -120,7 +114,7 @@
         width: 100%;
         height: 100%;
         background-size: cover;
-        background-position: center;
+        background-position: bottom;
         background-repeat: no-repeat;
         opacity: 0;
         transition: opacity 1s ease-in-out;
@@ -138,92 +132,10 @@
         opacity: 1;
         transition: opacity 0.5s ease-in-out;
       }
-      .feature-carousel .swiper-button-next,
-      .feature-carousel .swiper-button-prev {
-        color: #484848;
-      }
-      
-      .feature-carousel .swiper-button-next:after,
-      .feature-carousel .swiper-button-prev:after {
-        font-size: 20px;
-      }
-      
-      .swiper-slide {
-        height: auto;
-      }
-
-      .feature-carousel {
-        overflow: visible;
-        padding-right: 24px;
-        margin-right: -24px;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .feature-carousel .swiper-wrapper {
-        transition-timing-function: ease-out;
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior-x: none;
-      }
-
-      .feature-carousel::-webkit-scrollbar {
-        height: 8px;
-      }
-
-      .feature-carousel::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 4px;
-      }
-
-      .feature-carousel::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 4px;
-      }
-
-      .feature-carousel::-webkit-scrollbar-thumb:hover {
-        background: #555;
-      }
-
-      html, body {
-        overflow-x: hidden;
-        position: relative;
-        width: 100%;
-      }
-
-      .labels-carousel {
-        overflow: hidden;
-        margin: 0 auto;
-        transition: width 0.3s ease;
-      }
-
-      .labels-carousel .swiper-wrapper {
-        transition-timing-function: ease-out;
-        align-items: center;
-      }
-
-      .labels-carousel .swiper-slide {
-        width: auto !important;
-        display: flex;
-        justify-content: center;
-        visibility: hidden;
-      }
-
-      .labels-carousel .swiper-slide-active {
-        visibility: visible;
-      }
-
-      .labels-carousel .swiper-button-next,
-      .labels-carousel .swiper-button-prev {
-        color: #484848;
-      }
-
-      .labels-carousel .swiper-button-next:after,
-      .labels-carousel .swiper-button-prev:after {
-        font-size: 20px;
-      }
     </style>
   </head>
 
-  <body class="relative bg-gray-75 text-gray-700 font-['Pulp_Display'] overflow-x-hidden">
+  <body class="relative bg-[url('./assets/background-pattern.png')] bg-repeat bg-[length:12px_12px] bg-fixed text-gray-700 font-['Pulp_Display']">
     <div
       class="fixed inset-0 backdrop-blur-sm z-50 hidden"
       id="popup">
@@ -231,7 +143,7 @@
         open
         class="fixed w-[846px] h-[418px] top-40 bg-white rounded-lg flex flex-row overflow-clip">
         <img
-          src="./assets/modal-hero.png"
+          src="./assets//modal-hero.png"
           width="423"
           height="418"
           alt="decoration" />
@@ -257,7 +169,7 @@
           </div>
           <a
             id="access-request-link"
-            class="text-white text-xs text-center font-medium leading-4 mt-4 rounded-lg bg-primary-600 py-3 px-5 md:w-auto cursor-pointer">
+            class="text-white text-xs text-center font-medium leading-4 mt-4 rounded-lg bg-blue-600 py-3 px-5 md:w-auto cursor-pointer">
             Continue to approve
           </a>
         </div>
@@ -267,7 +179,7 @@
     <div class="max-w-6xl mx-auto p-4 lg:p-6 flex flex-col gap-4 lg:gap-6">
       <div
         id="pending"
-        class="bg-black rounded-[20px] h-[160px] flex flex-col gap-3 justify-center text-primary-200 hidden">
+        class="bg-black rounded-[20px] h-[160px] flex flex-col gap-3 justify-center text-purple-200 hidden">
         <div class="flex flex-row justify-center items-center gap-1">
           <img
             src="./assets/relay-white.svg"
@@ -277,11 +189,11 @@
           <div class="text-base">Thanks for applying!</div>
         </div>
         <div class="flex flex-row justify-center">
-          <div class="text-4xl">Well be in touch shortly via email!</div>
+          <div class="text-4xl">We’ll be in touch shortly via email!</div>
         </div>
       </div>
       <header
-        class="bg-primary-200 w-full h-auto bg-[url('./assets/header/background--brand_loyalists.jpg')] bg-cover bg-center rounded-[48px]">
+        class="bg-purple-200 w-full h-auto bg-[url('./assets/background--high_spenders.jpg')] bg-cover bg-center rounded-[48px]">
         <div class="p-8 md:p-10 lg:p-12 flex flex-col gap-8">
           <div>
             <div class="flex gap-2">
@@ -289,202 +201,190 @@
               <h3 class="text-2xl text-gray-800 mb-2">Introducing Relay</h3>
             </div>
             <h1
-              class="text-2xl md:text-4xl font-bold text-gray-800 mb-4 leading-3 md:leading-12 lg:leading-12 pt-2 md:pt-0 lg:pt-2">
-              Personalize customer journey<br />
-              to
+              class="text-2xl md:text-4xl font-bold text-gray-800 mb-4 leading-3 md:leading-none lg:leading-5 pt-2 md:pt-0 lg:pt-2">
+              Show meaningful content<br />
+              to the right
               <div
                 id="labels"
-                class="inline-flex translate-y-0 md:translate-y-[-3px] lg:translate-y-[-3px]">
-                <div id="label--bargain_hunters" class="hidden flex items-center">
-                  <span class="text-gray-800 font-bold pt-[8px] md:pt-[3px] lg:pt-[7px] mr-2">interest</span>
-                  <div class="inline-flex items-center bg-green-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
-                    <div class="bg-green-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="26"
-                        height="26"
-                        viewBox="0 0 26 26"
-                        class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px]"
-                        fill="none">
-                        <path
-                          fill="#f2f4ef"
-                          fill-rule="evenodd"
-                          d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z"
-                          clip-rule="evenodd" />
-                      </svg>
-                    </div>
-                    <span>Bargain Hunters</span>
+                class="inline-flex translate-y-2.5 md:translate-y-1 lg:translate-y-3 text-sm lg:text-2xl">
+                <div
+                  id="label--browsers"
+                  class="hidden inline-flex items-center bg-green-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
+                  <div class="bg-green-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="26"
+                      height="26"
+                      viewBox="0 0 26 26"
+                      class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px]"
+                      fill="none">
+                      <path
+                        fill="#f2f4ef"
+                        fill-rule="evenodd"
+                        d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z"
+                        clip-rule="evenodd" />
+                    </svg>
                   </div>
+                  <span>Browsers</span>
                 </div>
-                <div id="label--old_customers" class="hidden flex items-center">
-                  <span class="text-gray-800 font-bold pt-[8px] md:pt-[3px] lg:pt-[7px] mr-2">revive</span>
-                  <div class="inline-flex items-center bg-orange-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
-                    <div class="bg-orange-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="26"
-                        height="26"
-                        viewBox="0 0 26 26"
-                        class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px]"
-                        fill="none">
-                        <path
-                          fill="#fff7f4"
-                          fill-rule="evenodd"
-                          d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z"
-                          clip-rule="evenodd" />
-                      </svg>
-                    </div>
-                    <span>Old Customers</span>
+                <div
+                  id="label--bargain_hunters"
+                  class="hidden inline-flex items-center bg-pink-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
+                  <div class="bg-pink-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="26"
+                      height="26"
+                      viewBox="0 0 26 26"
+                      class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px]"
+                      fill="none">
+                      <path
+                        fill="#faf0f4"
+                        fill-rule="evenodd"
+                        d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z"
+                        clip-rule="evenodd" />
+                    </svg>
                   </div>
+                  <span>Bargain Hunters</span>
                 </div>
-                <div id="label--brand_loyalists" class="hidden flex items-center">
-                  <span class="text-gray-800 font-bold pt-[8px] md:pt-[3px] lg:pt-[7px] mr-2">engage</span>
-                  <div class="inline-flex items-center bg-primary-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
-                    <div class="bg-primary-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="26"
-                        height="26"
-                        viewBox="0 0 26 26"
-                        class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px]"
-                        fill="none">
-                        <path
-                          fill="#f5f0ff"
-                          fill-rule="evenodd"
-                          d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z"
-                          clip-rule="evenodd" />
-                      </svg>
-                    </div>
-                    <span>Brand Loyalists</span>
+                <div
+                  id="label--loyal_customers"
+                  class="hidden inline-flex items-center bg-orange-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
+                  <div class="bg-orange-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="26"
+                      height="26"
+                      viewBox="0 0 26 26"
+                      class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px]"
+                      fill="none">
+                      <path
+                        fill="#fff7f4"
+                        fill-rule="evenodd"
+                        d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z"
+                        clip-rule="evenodd" />
+                    </svg>
                   </div>
+                  <span>Loyal Customers</span>
+                </div>
+                <div
+                  id="label--high_spenders"
+                  class="hidden inline-flex items-center bg-purple-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
+                  <div class="bg-purple-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="26"
+                      height="26"
+                      viewBox="0 0 26 26"
+                      class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px]"
+                      fill="none">
+                      <path
+                        fill="#f5f0ff"
+                        fill-rule="evenodd"
+                        d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z"
+                        clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <span>High Spenders</span>
                 </div>
               </div>
-              and turn <br>
-              every store visit into a sale
+              customers.
             </h1>
             <p class="text-base text-gray-800">
               The marketing suite you have been waiting for.
             </p>
           </div>
+
+          <div
+            id="thumbs"
+            class="flex flex-row gap-3 md:gap-4 lg:gap-5">
+            <div
+              id="thumb--high_spenders"
+              class="bg-purple-300 pt-4 md:pt-4 lg:pt-6 rounded-[34px] md:rounded-[40px] lg:rounded-[47px] text-center flex flex-col justify-start h-[128px] md:h-[150px] lg:h-[186px] w-[68px] md:w-[80px] lg:w-[94px] bg-[url('./assets/thumb--high_spenders.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+              <h3 class="text-xs md:text-sm font-medium text-purple-800">High<br> Spenders</h3>
+            </div>
+            <div
+              id="thumb--bargain_hunters"
+              class="bg-pink-300 pt-4 md:pt-4 lg:pt-6 rounded-[34px] md:rounded-[40px] lg:rounded-[47px] text-center flex flex-col justify-start h-[128px] md:h-[150px] lg:h-[186px] w-[68px] md:w-[80px] lg:w-[94px] bg-[url('./assets/thumb--bargain_hunters.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+              <h3 class="text-xs md:text-sm font-medium text-pink-800">Bargain<br> Hunters</h3>
+            </div>
+            <div
+              id="thumb--loyal_customers"
+              class="bg-orange-200 pt-4 md:pt-4 lg:pt-6 rounded-[34px] md:rounded-[40px] lg:rounded-[47px] text-center flex flex-col justify-start h-[128px] md:h-[150px] lg:h-[186px] w-[68px] md:w-[80px] lg:w-[94px] bg-[url('./assets/thumb--loyal_customers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+              <h3 class="text-xs md:text-sm font-medium text-orange-800">Loyal<br> Customers</h3>
+            </div>
+            <div
+              id="thumb--browsers"
+              class="bg-green-300 pt-4 md:pt-4 lg:pt-6 rounded-[34px] md:rounded-[40px] lg:rounded-[47px] text-center flex flex-col justify-start h-[128px] md:h-[150px] lg:h-[186px] w-[68px] md:w-[80px] lg:w-[94px] bg-[url('./assets/thumb--browsers.jpg')] bg-bottom bg-no-repeat bg-[length:100%_auto]">
+              <h3 class="text-xs md:text-sm font-medium text-green-800">Browsers</h3>
+            </div>
+          </div>
         </div>
       </header>
 
-      <div class="relative w-screen left-1/2 right-1/2 -mx-[50vw] overflow-hidden">
-        <div class="max-w-6xl mx-auto px-4 lg:px-6">
-          <div class="swiper feature-carousel relative">
-            <div class="swiper-wrapper">
-              <!-- Slide 1 -->
-              <div class="swiper-slide">
-                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[600px]">
-                  <div class="w-full bg-white">
-                    <!-- Illustration placeholder -->
-                    <img src="./assets/features/segment.jpg" alt="Segment and Target" class="">
-                  </div>
-                  <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Segment and Target</h3>
-                    <p class="text-sm text-gray-600 font-medium mb-2">Leaving $$$ on the table by treating every customer the same?</p>
-                    <p class="text-sm text-gray-600">Segment Shopify customers by buying intent, reaching the right person with the right offer that lands every time—no more missed chances.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Slide 2 -->
-              <div class="swiper-slide">
-                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[600px]">
-                  <div class="w-full bg-white">
-                    <!-- Illustration placeholder -->
-                    <img src="./assets/features/smart.jpg" alt="Smarter Campaigns" class="">
-                  </div>
-                  <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Smarter Campaigns</h3>
-                    <p class="text-sm text-gray-600 font-medium mb-2">Not personalizing your store experience? You're missing out.</p>
-                    <p class="text-sm text-gray-600">Boost conversions with campaigns that adapt to each visitor. Think personalized pop-ups, notifications, and banners that deliver exactly what customers need—from special discounts to best-seller reminders.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Slide 3 -->
-              <div class="swiper-slide">
-                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[600px]">
-                  <div class="w-full bg-white">
-                    <!-- Illustration placeholder -->
-                    <img src="./assets/features/speedy.jpg" alt="Speedy Go-to-market" class="">
-                  </div>
-                  <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Speedy Go-to-market</h3>
-                    <p class="text-sm text-gray-600 font-medium mb-2">Need a quicker go-to-market for new products?</p>
-                    <p class="text-sm text-gray-600">Get there faster with pre-launch surveys and teaser campaigns to create buzz among loyal customers and capture early interest.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Slide 4 -->
-              <div class="swiper-slide">
-                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[600px]">
-                  <div class="w-full bg-white">
-                    <!-- Illustration placeholder -->
-                    <img src="./assets/features/segment.jpg" alt="Effortless, On-Brand Designs" class="">
-                  </div>
-                  <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Effortless, On-Brand Designs</h3>
-                    <p class="text-sm text-gray-600 font-medium mb-2">Building assets for each campaign taking too long?</p>
-                    <p class="text-sm text-gray-600">Say goodbye to design delays! Quickly create branded website blocks, notifications, and pop-ups with easy, on-brand customizations.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Slide 5 -->
-              <div class="swiper-slide">
-                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[600px]">
-                  <div class="w-full bg-white">
-                    <!-- Illustration placeholder -->
-                    <img src="./assets/features/unified.jpg" alt="Unified Campaign Management" class="">
-                  </div>
-                  <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Unified Campaign Management</h3>
-                    <p class="text-sm text-gray-600 font-medium mb-2">Managing multiple campaigns across segments feeling complex?</p>
-                    <p class="text-sm text-gray-600">Get a streamlined workflow—manage every segment and campaign from a single, powerful view.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Slide 6 -->
-              <div class="swiper-slide">
-                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[600px]">
-                  <div class="w-full bg-white">
-                    <!-- Illustration placeholder -->
-                    <img src="./assets/features/data.jpg" alt="Data-driven Actions" class="">
-                  </div>
-                  <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Data-driven Actions</h3>
-                    <p class="text-sm text-gray-600 font-medium mb-2">Wondering which campaign or creative drives sales?</p>
-                    <p class="text-sm text-gray-600">Drill down into detailed analytics to see exactly which reviews or product suggestions are driving clicks and boosting sales.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div class="flex flex-col md:flex-row gap-4 lg:gap-6">
+        <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-2/5">
+          <div
+            class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
+            Maximize conversions by taking control over your website
           </div>
+          <div
+            class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
+            Relay lets you tailor user experience based on behavior and prediction. Show dynamic blocks that reflect what the person is most likely to convert from.
+          </div>
+          <!-- <img
+            src="./assets/relay.svg"
+            class="w-32 h-auto mt-4"
+            alt="Relay logo" /> -->
+        </div>
+        <div class="w-full md:w-3/5 bg-gray-50 rounded-3xl p-8">
+          <img
+            src="./assets/shop-now.svg"
+            class="w-full md:w-1/2 h-[260px]"
+            alt="Graphical element" />
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-4 lg:gap-6">
+        <div class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-2/5">
+          <div
+            class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
+            Display different content to different segments of visitors
+          </div>
+          <div
+            class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
+            Dynamic Blocks, Pop-Ups and Notifications, and more to come. Display different content to different segments of visitors.
+          </div>
+          <div
+            class="text-gray-700 text-base md:text-lg font-normal leading-normal mt-4">
+            All based on their individual data.
+          </div>
+        </div>
+        <div
+          class="bg-gray-50 flex flex-col justify-between rounded-3xl p-8 md:w-3/5 md:order-first">
+          <img
+            src="./assets/unleash.svg"
+            class="w-full h-[260px]"
+            alt="Graphical element" />
         </div>
       </div>
 
       <div
         id="cta"
-        class="rounded-3xl bg-gray-950 flex items-center p-6 md:p-12 flex-col sm:flex-row justify-center items-start gap-4 lg:gap-6 bg-[url('./assets/background--cta.svg')] bg-no-repeat bg-right">
-        <div class="flex flex-col gap-2 flex-grow">
-          <div
-            class="text-center sm:text-left text-primary-400 text-xl md:text-2xl font-normal leading-normal">
-            Join the waitlist
-          </div>
-          <div class="text-center text-primary-400 sm:text-left text-sm md:text-base font-normal leading-normal">
-            Provide high impact experiences to make every website visit count.
-          </div>
+        class="rounded-3xl bg-gray-300 backdrop-blur flex p-6 md:p-12 flex-col justify-center items-start gap-4 lg:gap-6 bg-[url('./assets/card-background.svg')] bg-no-repeat bg-right-bottom bg-contain">
+        <div
+          class="text-gray-800 text-xl md:text-2xl font-normal leading-normal">
+          Join the waitlist
+        </div>
+        <div class="text-sm md:text-base font-normal leading-normal">
+          Provide high impact experiences to make every website visit count.
         </div>
         <div
           id="subscribe"
           class="hidden flex flex-col gap-4 lg:gap-6 w-full">
           <button
             id="form-unapproved-offered-button"
-            class="text-white text-base font-medium leading-2 rounded-lg bg-primary-500 py-3 px-5 md:w-auto">
+            class="text-white text-xs font-medium leading-4 rounded-lg bg-blue-600 min-h-[44px] py-3 px-5 max-w-[145px] md:w-auto">
             <span class="pt-0.5">Get Started</span>
           </button>
         </div>
@@ -492,9 +392,10 @@
           id="start"
           class="hidden">
           <button
-            class="text-white text-base font-medium leading-2 rounded-lg bg-primary-500 py-3 px-5 md:w-auto cursor-pointer"
-            onclick="showPopup()" id="modal-window-get-started-button">
-            <span id="modal-window-get-started-button" class="pt-0.5">Get Started</span>
+            class="text-white text-xs font-medium leading-4 rounded-lg bg-blue-600 min-h-[44px] py-3 px-5 w-[145px] md:w-auto cursor-pointer"
+            onclick="showPopup()"
+            id="modal-window-get-started-button">
+            <span class="pt-0.5">Get Started</span>
           </button>
         </div>
       </div>
@@ -536,9 +437,10 @@
 
         // Animation setup
         const playlist = [
-          "brand_loyalists",
+          "high_spenders",
+          "browsers",
+          "loyal_customers",
           "bargain_hunters",
-          "old_customers"
         ];
         let currentIndex = 0;
 
@@ -555,7 +457,7 @@
           const header = document.querySelector("header");
           const newOverlay = document.createElement("div");
           newOverlay.className = "background-overlay";
-          newOverlay.style.backgroundImage = `url('./assets/header/background--${next}.jpg')`;
+          newOverlay.style.backgroundImage = `url('./assets/background--${next}.jpg')`;
           header.insertBefore(newOverlay, header.firstChild);
           setTimeout(() => (newOverlay.style.opacity = "1"), 0);
 
@@ -589,6 +491,25 @@
             });
           }, 550);
 
+          // Update thumbnails
+          updateElement(`#thumb--${current}`, (el) =>
+            el.classList.add("fade-out")
+          );
+
+          setTimeout(() => {
+            updateElement(`#thumb--${current}`, (el) => {
+              el.classList.remove("fade-out", "hidden");
+              document
+                .querySelector("#thumbs")
+                .insertBefore(el, document.querySelector("#thumbs").firstChild);
+              setTimeout(() => el.classList.add("fade-in"), 0);
+              setTimeout(() => el.classList.remove("fade-in"), 500);
+            });
+            updateElement(`#thumb--${next}`, (el) =>
+              el.classList.add("hidden")
+            );
+          }, 500);
+
           currentIndex = (currentIndex + 1) % playlist.length;
         }
 
@@ -596,7 +517,7 @@
         updateElement("header", (header) => {
           const initialOverlay = document.createElement("div");
           initialOverlay.className = "background-overlay";
-          initialOverlay.style.backgroundImage = `url('./assets/header/background--${playlist[0]}.jpg')`;
+          initialOverlay.style.backgroundImage = `url('./assets/background--${playlist[0]}.jpg')`;
           initialOverlay.style.opacity = "1";
           header.insertBefore(initialOverlay, header.firstChild);
         });
@@ -616,56 +537,18 @@
                 el.style.opacity = "0";
               }
             });
+            updateElement(`#thumb--${segment}`, (el) => {
+              el.classList.toggle("hidden", index === 0);
+            });
           });
         }
 
+        // Use requestAnimationFrame to ensure DOM is ready
         requestAnimationFrame(() => {
           initializeLabels();
+          // Start transitions after a short delay
           setTimeout(() => setInterval(transition, 5000), 100);
         });
-
-        // Initialize Swiper
-        const swiper = new Swiper('.feature-carousel', {
-          slidesPerView: 'auto',
-          spaceBetween: 24,
-          grabCursor: true,
-          autoplay: false,
-          loop: false,
-          freeMode: {
-            enabled: true,
-            sticky: false,
-            momentumRatio: 0.25,
-            momentumVelocityRatio: 0.5,
-          },
-          mousewheel: {
-            forceToAxis: true,
-            sensitivity: 1,
-          },
-          keyboard: {
-            enabled: true,
-          },
-          navigation: {
-            enabled: false
-          },
-          breakpoints: {
-            // mobile
-            320: {
-              slidesPerView: 1.2,
-              spaceBetween: 16
-            },
-            // tablet
-            512: {
-              slidesPerView: 2.2,
-              spaceBetween: 24
-            },
-            // desktop
-            1024: {
-              slidesPerView: 2.5,
-              spaceBetween: 24
-            }
-          }
-        });
-
       });
     </script>
   </body>
