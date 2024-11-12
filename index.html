@@ -13,6 +13,9 @@
       tailwind.config = {
         theme: {
           extend: {
+            screens: {
+              'xs': '428px',
+            },
             colors: {
               gray: {
                 50: "#f7f7f7",
@@ -89,18 +92,22 @@
     <style>
       #labels {
         position: relative;
-        height: 41px;
+        height: 32px;
         overflow: hidden;
         display: inline-flex;
         transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
         vertical-align: middle;
-        /* margin-bottom: -8px; */
+      }
+
+      @media (min-width: 768px) {
+        #labels {
+          height: 40px;
+        }
       }
 
       @media (min-width: 1024px) {
         #labels {
           height: 48px;
-          /* margin-bottom: -10px; */
         }
       }
 
@@ -120,12 +127,20 @@
         width: 100%;
         height: 100%;
         background-size: cover;
-        background-position: center;
+        background-position: center 66%;
         background-repeat: no-repeat;
         opacity: 0;
         transition: opacity 1s ease-in-out;
         z-index: 1;
       }
+
+      @media (min-width: 768px) {
+        .background-overlay {
+          background-size: cover;
+          background-position: center center;
+        }
+      }
+
       header > div {
         position: relative;
         z-index: 2;
@@ -149,7 +164,11 @@
       }
       
       .swiper-slide {
-        height: auto;
+        height: auto !important;
+      }
+
+      .swiper-autoheight .swiper-slide {
+        height: 100%;
       }
 
       .feature-carousel {
@@ -163,6 +182,8 @@
         transition-timing-function: ease-out;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior-x: none;
+        height: auto !important;
+        align-items: stretch;
       }
 
       .feature-carousel::-webkit-scrollbar {
@@ -219,6 +240,11 @@
       .labels-carousel .swiper-button-next:after,
       .labels-carousel .swiper-button-prev:after {
         font-size: 20px;
+      }
+
+      /* Make the card inside each slide take full height */
+      .swiper-slide > div {
+        height: 100%;
       }
     </style>
   </head>
@@ -281,7 +307,7 @@
         </div>
       </div>
       <header
-        class="bg-primary-200 w-full h-auto bg-[url('./assets/header/background--brand_loyalists.jpg')] bg-cover bg-center rounded-[48px]">
+        class="bg-primary-200 w-full h-[500px] xs:h-[500px] sm:h-[300px] md:h-auto bg-cover bg-center rounded-[48px]">
         <div class="p-8 md:p-10 lg:p-12 flex flex-col gap-8">
           <div>
             <div class="flex gap-2">
@@ -289,14 +315,14 @@
               <h3 class="text-2xl text-gray-800 mb-2">Introducing Relay</h3>
             </div>
             <h1
-              class="text-2xl md:text-4xl font-bold text-gray-800 mb-4 leading-3 md:leading-12 lg:leading-12 pt-2 md:pt-0 lg:pt-2">
-              Personalize customer journey<br />
+              class="text-2xl md:text-4xl font-bold text-gray-800 mb-4 leading-7 md:leading-12 lg:leading-12 pt-2 md:pt-0 lg:pt-2">
+              Personalize <br class="xs:hidden"> customer journey<br class="hidden sm:block">
               to
               <div
                 id="labels"
                 class="inline-flex translate-y-0 md:translate-y-[-3px] lg:translate-y-[-3px]">
                 <div id="label--bargain_hunters" class="hidden flex items-center">
-                  <span class="text-gray-800 font-bold pt-[8px] md:pt-[3px] lg:pt-[7px] mr-2">interest</span>
+                  <span class="text-gray-800 font-bold pt-[2px] md:pt-[3px] lg:pt-[7px] mr-2">interest</span>
                   <div class="inline-flex items-center bg-green-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
                     <div class="bg-green-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
                       <svg
@@ -317,7 +343,7 @@
                   </div>
                 </div>
                 <div id="label--old_customers" class="hidden flex items-center">
-                  <span class="text-gray-800 font-bold pt-[8px] md:pt-[3px] lg:pt-[7px] mr-2">revive</span>
+                  <span class="text-gray-800 font-bold pt-[2px] md:pt-[3px] lg:pt-[7px] mr-2">revive</span>
                   <div class="inline-flex items-center bg-orange-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
                     <div class="bg-orange-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
                       <svg
@@ -338,7 +364,7 @@
                   </div>
                 </div>
                 <div id="label--brand_loyalists" class="hidden flex items-center">
-                  <span class="text-gray-800 font-bold pt-[8px] md:pt-[3px] lg:pt-[7px] mr-2">engage</span>
+                  <span class="text-gray-800 font-bold pt-[2px] md:pt-[3px] lg:pt-[7px] mr-2">engage</span>
                   <div class="inline-flex items-center bg-primary-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
                     <div class="bg-primary-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
                       <svg
@@ -359,11 +385,11 @@
                   </div>
                 </div>
               </div>
-              and turn <br>
+              and turn <br class="hidden xs:block">
               every store visit into a sale
             </h1>
             <p class="text-base text-gray-800">
-              The marketing suite you have been waiting for.
+              Instant store-front personalization <br class="md:hidden">for every customer, old or new.
             </p>
           </div>
         </div>
@@ -372,45 +398,42 @@
       <div class="relative w-screen left-1/2 right-1/2 -mx-[50vw] overflow-hidden">
         <div class="max-w-6xl mx-auto px-4 lg:px-6">
           <div class="swiper feature-carousel relative">
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper h-full">
               <!-- Slide 1 -->
               <div class="swiper-slide">
-                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[600px]">
+                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-full">
                   <div class="w-full bg-white">
-                    <!-- Illustration placeholder -->
                     <img src="./assets/features/segment.jpg" alt="Segment and Target" class="">
                   </div>
-                  <div class="p-6 flex flex-col flex-grow">
+                  <div class="p-6 flex flex-col h-full">
                     <h3 class="text-xl font-bold text-gray-800 mb-2">Segment and Target</h3>
                     <p class="text-sm text-gray-600 font-medium mb-2">Leaving $$$ on the table by treating every customer the same?</p>
-                    <p class="text-sm text-gray-600">Segment Shopify customers by buying intent, reaching the right person with the right offer that lands every time—no more missed chances.</p>
+                    <p class="text-sm text-gray-600">Segment Shopify customers by buying intent, reaching the right person with the right offer that lands every time — no more missed chances.</p>
                   </div>
                 </div>
               </div>
 
               <!-- Slide 2 -->
               <div class="swiper-slide">
-                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[600px]">
+                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-full">
                   <div class="w-full bg-white">
-                    <!-- Illustration placeholder -->
                     <img src="./assets/features/smart.jpg" alt="Smarter Campaigns" class="">
                   </div>
-                  <div class="p-6 flex flex-col flex-grow">
+                  <div class="p-6 flex flex-col h-full">
                     <h3 class="text-xl font-bold text-gray-800 mb-2">Smarter Campaigns</h3>
                     <p class="text-sm text-gray-600 font-medium mb-2">Not personalizing your store experience? You're missing out.</p>
-                    <p class="text-sm text-gray-600">Boost conversions with campaigns that adapt to each visitor. Think personalized pop-ups, notifications, and banners that deliver exactly what customers need—from special discounts to best-seller reminders.</p>
+                    <p class="text-sm text-gray-600">Boost conversions with campaigns that adapt to each visitor. Think personalized pop-ups and banners delivering exactly what users need — from special discounts to best-seller alerts.</p>
                   </div>
                 </div>
               </div>
 
               <!-- Slide 3 -->
               <div class="swiper-slide">
-                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[600px]">
+                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-full">
                   <div class="w-full bg-white">
-                    <!-- Illustration placeholder -->
                     <img src="./assets/features/speedy.jpg" alt="Speedy Go-to-market" class="">
                   </div>
-                  <div class="p-6 flex flex-col flex-grow">
+                  <div class="p-6 flex flex-col h-full">
                     <h3 class="text-xl font-bold text-gray-800 mb-2">Speedy Go-to-market</h3>
                     <p class="text-sm text-gray-600 font-medium mb-2">Need a quicker go-to-market for new products?</p>
                     <p class="text-sm text-gray-600">Get there faster with pre-launch surveys and teaser campaigns to create buzz among loyal customers and capture early interest.</p>
@@ -420,14 +443,13 @@
 
               <!-- Slide 4 -->
               <div class="swiper-slide">
-                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[600px]">
+                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-full">
                   <div class="w-full bg-white">
-                    <!-- Illustration placeholder -->
-                    <img src="./assets/features/segment.jpg" alt="Effortless, On-Brand Designs" class="">
+                    <img src="./assets/features/effortless.jpg" alt="Effortless, On-Brand Designs" class="">
                   </div>
-                  <div class="p-6 flex flex-col flex-grow">
+                  <div class="p-6 flex flex-col h-full">
                     <h3 class="text-xl font-bold text-gray-800 mb-2">Effortless, On-Brand Designs</h3>
-                    <p class="text-sm text-gray-600 font-medium mb-2">Building assets for each campaign taking too long?</p>
+                    <p class="text-sm text-gray-600 font-medium mb-2">Waiting on designs holding up your campaigns?</p>
                     <p class="text-sm text-gray-600">Say goodbye to design delays! Quickly create branded website blocks, notifications, and pop-ups with easy, on-brand customizations.</p>
                   </div>
                 </div>
@@ -435,12 +457,11 @@
 
               <!-- Slide 5 -->
               <div class="swiper-slide">
-                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[600px]">
+                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-full">
                   <div class="w-full bg-white">
-                    <!-- Illustration placeholder -->
                     <img src="./assets/features/unified.jpg" alt="Unified Campaign Management" class="">
                   </div>
-                  <div class="p-6 flex flex-col flex-grow">
+                  <div class="p-6 flex flex-col h-full">
                     <h3 class="text-xl font-bold text-gray-800 mb-2">Unified Campaign Management</h3>
                     <p class="text-sm text-gray-600 font-medium mb-2">Managing multiple campaigns across segments feeling complex?</p>
                     <p class="text-sm text-gray-600">Get a streamlined workflow—manage every segment and campaign from a single, powerful view.</p>
@@ -450,12 +471,11 @@
 
               <!-- Slide 6 -->
               <div class="swiper-slide">
-                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-[600px]">
+                <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-full">
                   <div class="w-full bg-white">
-                    <!-- Illustration placeholder -->
                     <img src="./assets/features/data.jpg" alt="Data-driven Actions" class="">
                   </div>
-                  <div class="p-6 flex flex-col flex-grow">
+                  <div class="p-6 flex flex-col h-full">
                     <h3 class="text-xl font-bold text-gray-800 mb-2">Data-driven Actions</h3>
                     <p class="text-sm text-gray-600 font-medium mb-2">Wondering which campaign or creative drives sales?</p>
                     <p class="text-sm text-gray-600">Drill down into detailed analytics to see exactly which reviews or product suggestions are driving clicks and boosting sales.</p>
@@ -472,11 +492,17 @@
         class="rounded-3xl bg-gray-950 flex items-center p-6 md:p-12 flex-col sm:flex-row justify-center items-start gap-4 lg:gap-6 bg-[url('./assets/background--cta.svg')] bg-no-repeat bg-right">
         <div class="flex flex-col gap-2 flex-grow">
           <div
-            class="text-center sm:text-left text-primary-400 text-xl md:text-2xl font-normal leading-normal">
-            Join the waitlist
+            id="start-title"
+            class="text-center sm:text-left text-primary-400 text-xl md:text-2xl font-normal leading-normal hidden">
+            Get Started
+          </div>
+          <div
+            id="subscribe-title"
+            class="text-center sm:text-left text-primary-400 text-xl md:text-2xl font-normal leading-normal hidden">
+            Join the Waitlist
           </div>
           <div class="text-center text-primary-400 sm:text-left text-sm md:text-base font-normal leading-normal">
-            Provide high impact experiences to make every website visit count.
+            Join our beta program to get access to full-scale personalization and turn your Shopify store into a revenue machine.
           </div>
         </div>
         <div
@@ -484,8 +510,8 @@
           class="hidden">
           <button
             id="form-unapproved-offered-button"
-            class="text-white text-base font-medium leading-2 rounded-lg bg-primary-500 py-3 px-5 md:w-auto">
-            <span class="pt-0.5">Get Started</span>
+            class="text-white text-base font-medium leading-2 rounded-lg bg-primary-500 py-3 px-5 md:w-auto cursor-pointer">
+            <span class="pt-0.5 whitespace-nowrap">Join Waitlist</span>
           </button>
         </div>
         <div
@@ -494,7 +520,7 @@
           <button
             class="text-white text-base font-medium leading-2 rounded-lg bg-primary-500 py-3 px-5 md:w-auto cursor-pointer"
             onclick="showPopup()" id="modal-window-get-started-button">
-            <span class="pt-0.5">Get Started</span>
+            <span class="pt-0.5 whitespace-nowrap">Get Started</span>
           </button>
         </div>
       </div>
@@ -524,11 +550,20 @@
         document.getElementById("popup").classList.remove("hidden");
         document.body.classList.add("overflow-hidden");
       }
+
+      function getBackgroundPath(segment) {
+        const isMobile = window.innerWidth < 640;
+        const backgroundType = isMobile ? 'background_mobile' : 'background';
+        return `url('./assets/header/${backgroundType}--${segment}.jpg')`;
+      }
+
       document.addEventListener("DOMContentLoaded", () => {
         if (variant === "A") {
           document.getElementById("start").classList.remove("hidden");
+          document.getElementById("start-title").classList.remove("hidden");
         } else if (variant === "B") {
           document.getElementById("subscribe").classList.remove("hidden");
+          document.getElementById("subscribe-title").classList.remove("hidden");
         } else if (variant === "C") {
           document.getElementById("pending").classList.remove("hidden");
           document.getElementById("cta").classList.add("hidden");
@@ -555,7 +590,8 @@
           const header = document.querySelector("header");
           const newOverlay = document.createElement("div");
           newOverlay.className = "background-overlay";
-          newOverlay.style.backgroundImage = `url('./assets/header/background--${next}.jpg')`;
+          newOverlay.style.backgroundImage = getBackgroundPath(next);
+          
           header.insertBefore(newOverlay, header.firstChild);
           setTimeout(() => (newOverlay.style.opacity = "1"), 0);
 
@@ -596,7 +632,7 @@
         updateElement("header", (header) => {
           const initialOverlay = document.createElement("div");
           initialOverlay.className = "background-overlay";
-          initialOverlay.style.backgroundImage = `url('./assets/header/background--${playlist[0]}.jpg')`;
+          initialOverlay.style.backgroundImage = getBackgroundPath(playlist[0]);
           initialOverlay.style.opacity = "1";
           header.insertBefore(initialOverlay, header.firstChild);
         });
@@ -648,17 +684,31 @@
             enabled: false
           },
           breakpoints: {
-            // mobile
-            320: {
-              slidesPerView: 1.2,
+            0: {
+              slidesPerView: 1.1,
               spaceBetween: 16
             },
-            // tablet
-            512: {
-              slidesPerView: 2.2,
-              spaceBetween: 24
+            // xs (428px)
+            320: {
+              slidesPerView: 1.1,
+              spaceBetween: 16
             },
-            // desktop
+            // xs (428px)
+            428: {
+              slidesPerView: 1.5,
+              spaceBetween: 16
+            },
+            // sm (640px)
+            640: {
+              slidesPerView: 1.5,
+              spaceBetween: 16
+            },
+            // md (768px)
+            768: {
+              slidesPerView: 2.2,
+              spaceBetween: 16
+            },
+            // lg (1024px)
             1024: {
               slidesPerView: 2.5,
               spaceBetween: 24
@@ -666,6 +716,15 @@
           }
         });
 
+        // Resize listener to update background when screen size changes
+        window.addEventListener('resize', () => {
+          const overlays = document.querySelectorAll('.background-overlay');
+          overlays.forEach(overlay => {
+            const currentBg = overlay.style.backgroundImage;
+            const segment = currentBg.match(/--([^.]+)\.jpg/)[1];
+            overlay.style.backgroundImage = getBackgroundPath(segment);
+          });
+        });
       });
     </script>
   </body>
