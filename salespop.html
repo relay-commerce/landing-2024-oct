@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relay landing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    screens: {
+                        'xs': '428px',
+                    },
+                    colors: {
+                        gray: {
+                            50: "#f7f7f7",
+                            75: "#f5f5f7",
+                            100: "#f3f3f3",
+                            125: "#eeeeee",
+                            150: "#e9e9e9",
+                            200: "#dfdfdf",
+                            300: "#cccccc",
+                            350: "#ababab",
+                            400: "#8a8a8a",
+                            500: "#757575",
+                            600: "#616161",
+                            700: "#484848",
+                            800: "#2e2e2e",
+                            900: "#181818",
+                        },
+                        green: {
+                            50: "#f2f4ef",
+                            100: "#e5e9df",
+                            200: "#ccd3bf",
+                            300: "#B7C999",
+                            400: "#9cb579",
+                            500: "#84a65b",
+                            600: "#6a8549",
+                            700: "#51643a",
+                            800: "#37432a",
+                            900: "#1e231a",
+                        },
+                        pink: {
+                            50: "#faf0f4",
+                            100: "#f5e1e9",
+                            200: "#ebc3d3",
+                            300: "#da90a9",
+                            400: "#d06f8f",
+                            500: "#c54e75",
+                            600: "#a93960",
+                            700: "#7f2b48",
+                            800: "#551c30",
+                            900: "#2b0e18",
+                        },
+                        orange: {
+                            50: "#fff7f4",
+                            100: "#ffefe9",
+                            200: "#ffd0c0",
+                            300: "#ffb199",
+                            400: "#ff9273",
+                            500: "#ff734d",
+                            600: "#e65c3d",
+                            700: "#cc452e",
+                            800: "#992e1f",
+                            900: "#66170f",
+                        },
+                        primary: {
+                            50: "#f5f0ff",
+                            100: "#ebe0ff",
+                            200: "#d7c2ff",
+                            300: "#CCB0EE",
+                            400: "#ae85ff",
+                            500: "#9061F9",
+                            600: "#7a4edb",
+                            700: "#643bbd",
+                            800: "#4e299f",
+                            900: "#381881",
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="stylesheet" href="./fonts/font-face.css" />
+    <style>
+        #labels {
+            position: relative;
+            height: 32px;
+            overflow: hidden;
+            display: inline-flex;
+            transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+            vertical-align: middle;
+        }
+
+        @media (min-width: 768px) {
+            #labels {
+                height: 40px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            #labels {
+                height: 48px;
+            }
+        }
+
+        #labels>div {
+            position: absolute;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            white-space: nowrap;
+        }
+
+        header {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center 66%;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1;
+        }
+
+        @media (min-width: 768px) {
+            .background-overlay {
+                background-size: cover;
+                background-position: center center;
+            }
+        }
+
+        header>div {
+            position: relative;
+            z-index: 2;
+        }
+
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .fade-in {
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .feature-carousel .swiper-button-next,
+        .feature-carousel .swiper-button-prev {
+            color: #484848;
+        }
+
+        .feature-carousel .swiper-button-next:after,
+        .feature-carousel .swiper-button-prev:after {
+            font-size: 20px;
+        }
+
+        .swiper-slide {
+            height: auto !important;
+        }
+
+        .swiper-autoheight .swiper-slide {
+            height: 100%;
+        }
+
+        .feature-carousel {
+            overflow: visible;
+            padding-right: 24px;
+            margin-right: -24px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .feature-carousel .swiper-wrapper {
+            transition-timing-function: ease-out;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: none;
+            height: auto !important;
+            align-items: stretch;
+        }
+
+        .feature-carousel::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .feature-carousel::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .feature-carousel::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .feature-carousel::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .labels-carousel {
+            overflow: hidden;
+            margin: 0 auto;
+            transition: width 0.3s ease;
+        }
+
+        .labels-carousel .swiper-wrapper {
+            transition-timing-function: ease-out;
+            align-items: center;
+        }
+
+        .labels-carousel .swiper-slide {
+            width: auto !important;
+            display: flex;
+            justify-content: center;
+            visibility: hidden;
+        }
+
+        .labels-carousel .swiper-slide-active {
+            visibility: visible;
+        }
+
+        .labels-carousel .swiper-button-next,
+        .labels-carousel .swiper-button-prev {
+            color: #484848;
+        }
+
+        .labels-carousel .swiper-button-next:after,
+        .labels-carousel .swiper-button-prev:after {
+            font-size: 20px;
+        }
+
+        /* Make the card inside each slide take full height */
+        .swiper-slide>div {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body class="relative bg-gray-75 text-gray-700 font-['Pulp_Display'] overflow-x-hidden">
+<div class="fixed inset-0 backdrop-blur-sm z-50 hidden" id="popup-backdrop">
+    <dialog open class="fixed w-[946px] h-[470px] top-40 bg-white rounded-lg flex flex-row overflow-clip">
+        <img src="./assets/modal-hero.png" width="473" height="470" alt="decoration" />
+        <div class="p-8 flex flex-col grow h-full">
+            <div class="flex flex-row justify-between">
+                <div class="text-gray-800 text-xl md:text-2xl font-normal leading-normal md:leading-tight">
+                    We Need Your Approval to Unlock New Features
+                </div>
+                <div class="text-right text-3xl">
+                    <span class="cursor-pointer" id="close-button">&times;</span>
+                </div>
+            </div>
+            <div class="text-gray-700 text-xs md:text-base font-normal leading-normal md:leading-tight grow mt-2">
+                By requesting to initiate Relay Persona, you have read and agree to be bound by the <a
+                    href="https://docs.persona.relaycommerce.io/article/27-terms-of-service" target="_blank"
+                    class="underline underline-offset-2">Relay Persona Terms of Service</a>.<br>
+                Any Service Fees and usage calculations are subject to
+                our <a href="https://docs.persona.relaycommerce.io/article/15-how-personas-pricing-works" target="_blank"
+                       class="underline underline-offset-2">Persona pricing page</a>. Relay Persona requires the following
+                read/write permissions to function: access to customer, order, product, inventory, location, and discount
+                data, as well as the ability to manage marketing events, price rules, and script tags. Please see your store
+                providers settings for a detailed list of granted permissions.<br>
+                We value your privacy and trust and will continue acting as your data processor and protecting your data as
+                outlined in our <a href="https://www.relaycommerce.io/dpa" target="_blank"
+                                   class="underline underline-offset-2">Data Processing
+                Agreement</a>.
+            </div>
+            <a id="access-request-link"
+               class="text-white text-xs text-center font-medium leading-4 mt-4 rounded-lg bg-primary-600 py-3 px-5 md:w-auto cursor-pointer">
+                I agree. Approve access
+            </a>
+        </div>
+    </dialog>
+</div>
+
+<div class="max-w-6xl mx-auto p-4 lg:p-6 flex flex-col gap-4 lg:gap-6">
+    <div id="pending"
+         class="bg-black rounded-[20px] h-[160px] flex flex-col gap-3 justify-center text-primary-200 hidden">
+        <div class="flex flex-row justify-center items-center gap-1">
+            <img src="./assets/relay-white.svg" alt="logo" width="22" height="22" />
+            <div class="text-base">Thanks for applying!</div>
+        </div>
+        <div class="flex flex-row justify-center">
+            <div class="text-4xl">Well be in touch shortly via email!</div>
+        </div>
+    </div>
+    <header
+            class="bg-primary-200 w-full h-[500px] xs:h-[500px] sm:h-[300px] md:h-auto bg-cover bg-center rounded-[48px]">
+        <div class="p-8 md:p-10 lg:p-12 flex flex-col gap-8">
+            <div>
+                <div class="flex gap-2">
+                    <img class="h-7 w-7" src="./assets/relay-logo.svg" alt="relay logo">
+                    <h3 class="text-2xl text-gray-800 mb-2">Introducing Relay</h3>
+                </div>
+                <h1
+                        class="text-2xl md:text-4xl font-bold text-gray-800 mb-4 leading-7 md:leading-12 lg:leading-12 pt-2 md:pt-0 lg:pt-2">
+                    Personalize <br class="xs:hidden"> customer journey<br class="hidden sm:block">
+                    to
+                    <div id="labels" class="inline-flex translate-y-0 md:translate-y-[-3px] lg:translate-y-[-3px]">
+                        <div id="label--bargain_hunters" class="hidden flex items-center">
+                            <span class="text-gray-800 font-bold pt-[2px] md:pt-[3px] lg:pt-[7px] mr-2">interest</span>
+                            <div
+                                    class="inline-flex items-center bg-green-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
+                                <div class="bg-green-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26"
+                                         class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px]" fill="none">
+                                        <path fill="#f2f4ef" fill-rule="evenodd"
+                                              d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z"
+                                              clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span>Bargain Hunters</span>
+                            </div>
+                        </div>
+                        <div id="label--old_customers" class="hidden flex items-center">
+                            <span class="text-gray-800 font-bold pt-[2px] md:pt-[3px] lg:pt-[7px] mr-2">revive</span>
+                            <div
+                                    class="inline-flex items-center bg-orange-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
+                                <div class="bg-orange-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26"
+                                         class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px]" fill="none">
+                                        <path fill="#fff7f4" fill-rule="evenodd"
+                                              d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z"
+                                              clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span>Old Customers</span>
+                            </div>
+                        </div>
+                        <div id="label--brand_loyalists" class="hidden flex items-center">
+                            <span class="text-gray-800 font-bold pt-[2px] md:pt-[3px] lg:pt-[7px] mr-2">engage</span>
+                            <div
+                                    class="inline-flex items-center bg-primary-500 text-white rounded-full p-1 lg:p-1.5 pr-2 lg:pr-3 text-xs lg:text-sm font-medium">
+                                <div class="bg-primary-600 rounded-full p-1 lg:p-1.5 mr-1 lg:mr-1.5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26"
+                                         class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px]" fill="none">
+                                        <path fill="#f5f0ff" fill-rule="evenodd"
+                                              d="M8.125 6.5a1.625 1.625 0 0 0-.326 3.217 1.083 1.083 0 1 1-.431 2.124A3.793 3.793 0 1 1 10.4 5.092a1.083 1.083 0 0 1-1.302 1.732 1.613 1.613 0 0 0-.974-.324Zm7.474-1.408a3.792 3.792 0 1 1 3.033 6.749 1.083 1.083 0 0 1-.43-2.124A1.626 1.626 0 1 0 16.9 6.824a1.083 1.083 0 0 1-1.302-1.732ZM13 8.667a1.625 1.625 0 1 0 0 3.25 1.625 1.625 0 0 0 0-3.25Zm-3.792 1.625a3.792 3.792 0 1 1 7.584 0 3.792 3.792 0 0 1-7.584 0ZM6.5 15.167c-1.197 0-2.167.97-2.167 2.166h.542a1.083 1.083 0 1 1 0 2.167h-.542a2.167 2.167 0 0 1-2.166-2.167A4.333 4.333 0 0 1 6.5 13h1.083a1.083 1.083 0 1 1 0 2.167H6.5Zm10.834-1.084c0-.598.485-1.083 1.083-1.083H19.5a4.333 4.333 0 0 1 4.334 4.333c0 1.197-.97 2.167-2.167 2.167h-.542a1.083 1.083 0 1 1 0-2.167h.542c0-1.196-.97-2.166-2.167-2.166h-1.083a1.083 1.083 0 0 1-1.083-1.084Zm-5.959 3.25c-1.197 0-2.167.97-2.167 2.167h7.584c0-1.197-.97-2.167-2.167-2.167h-3.25ZM7.042 19.5a4.333 4.333 0 0 1 4.333-4.333h3.25a4.333 4.333 0 0 1 4.333 4.333c0 1.197-.97 2.167-2.166 2.167H9.208A2.167 2.167 0 0 1 7.042 19.5Z"
+                                              clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span>Brand Loyalists</span>
+                            </div>
+                        </div>
+                    </div>
+                    and turn <br class="hidden xs:block">
+                    every store visit into a sale
+                </h1>
+                <p class="text-base text-gray-800">
+                    Instant store-front personalization <br class="md:hidden">for every customer, old or new.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <div class="relative w-screen left-1/2 right-1/2 -mx-[50vw] overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 lg:px-6">
+            <div class="swiper feature-carousel relative">
+                <div class="swiper-wrapper h-full">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-full">
+                            <div class="w-full bg-white">
+                                <img src="./assets/features/segment.jpg" alt="Segment and Target" class="">
+                            </div>
+                            <div class="p-6 flex flex-col h-full">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Segment and Target</h3>
+                                <p class="text-sm text-gray-600 font-medium mb-2">Leaving $$$ on the table by treating every customer
+                                    the same?</p>
+                                <p class="text-sm text-gray-600">Segment Shopify customers by buying intent, reaching the right person
+                                    with the right offer that lands every time — no more missed chances.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-full">
+                            <div class="w-full bg-white">
+                                <img src="./assets/features/smart.jpg" alt="Smarter Campaigns" class="">
+                            </div>
+                            <div class="p-6 flex flex-col h-full">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Smarter Campaigns</h3>
+                                <p class="text-sm text-gray-600 font-medium mb-2">Not personalizing your store experience? You're
+                                    missing out.</p>
+                                <p class="text-sm text-gray-600">Boost conversions with campaigns that adapt to each visitor. Think
+                                    personalized pop-ups and banners delivering exactly what users need — from special discounts to
+                                    best-seller alerts.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-full">
+                            <div class="w-full bg-white">
+                                <img src="./assets/features/speedy.jpg" alt="Speedy Go-to-market" class="">
+                            </div>
+                            <div class="p-6 flex flex-col h-full">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Speedy Go-to-market</h3>
+                                <p class="text-sm text-gray-600 font-medium mb-2">Need a quicker go-to-market for new products?</p>
+                                <p class="text-sm text-gray-600">Get there faster with pre-launch surveys and teaser campaigns to
+                                    create buzz among loyal customers and capture early interest.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-full">
+                            <div class="w-full bg-white">
+                                <img src="./assets/features/effortless.jpg" alt="Effortless, On-Brand Designs" class="">
+                            </div>
+                            <div class="p-6 flex flex-col h-full">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Effortless, On-Brand Designs</h3>
+                                <p class="text-sm text-gray-600 font-medium mb-2">Waiting on designs holding up your campaigns?</p>
+                                <p class="text-sm text-gray-600">Say goodbye to design delays! Quickly create branded website blocks,
+                                    notifications, and pop-ups with easy, on-brand customizations.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-full">
+                            <div class="w-full bg-white">
+                                <img src="./assets/features/unified.jpg" alt="Unified Campaign Management" class="">
+                            </div>
+                            <div class="p-6 flex flex-col h-full">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Unified Campaign Management</h3>
+                                <p class="text-sm text-gray-600 font-medium mb-2">Managing multiple campaigns across segments feeling
+                                    complex?</p>
+                                <p class="text-sm text-gray-600">Get a streamlined workflow—manage every segment and campaign from a
+                                    single, powerful view.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-3xl overflow-hidden flex flex-col h-full">
+                            <div class="w-full bg-white">
+                                <img src="./assets/features/data.jpg" alt="Data-driven Actions" class="">
+                            </div>
+                            <div class="p-6 flex flex-col h-full">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Data-driven Actions</h3>
+                                <p class="text-sm text-gray-600 font-medium mb-2">Wondering which campaign or creative drives sales?
+                                </p>
+                                <p class="text-sm text-gray-600">Drill down into detailed analytics to see exactly which reviews or
+                                    product suggestions are driving clicks and boosting sales.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cta"
+         class="rounded-3xl bg-gray-950 flex items-center p-6 md:p-12 flex-col sm:flex-row justify-center items-start gap-4 lg:gap-6 bg-[url('./assets/background--cta.svg')] bg-no-repeat bg-right">
+        <div class="flex flex-col gap-2 flex-grow">
+            <div id="start-title"
+                 class="text-center sm:text-left text-primary-400 text-xl md:text-2xl font-normal leading-normal hidden">
+                Get Started
+            </div>
+            <div id="subscribe-title"
+                 class="text-center sm:text-left text-primary-400 text-xl md:text-2xl font-normal leading-normal hidden">
+                Join the Waitlist
+            </div>
+            <div class="text-center text-primary-400 sm:text-left text-sm md:text-base font-normal leading-normal">
+                Join our beta program to get access to full-scale personalization and turn your Shopify store into a revenue
+                machine.
+            </div>
+        </div>
+        <div id="subscribe" class="hidden">
+            <button id="form-unapproved-offered-button"
+                    class="text-white text-base font-medium leading-2 rounded-lg bg-primary-500 py-3 px-5 md:w-auto cursor-pointer">
+                <span class="pt-0.5 whitespace-nowrap">Join Waitlist</span>
+            </button>
+        </div>
+        <div id="start" class="hidden">
+            <button
+                    class="text-white text-base font-medium leading-2 rounded-lg bg-primary-500 py-3 px-5 md:w-auto cursor-pointer"
+                    onclick="showPopup()" id="modal-window-get-started-button">
+                <span class="pt-0.5 whitespace-nowrap">Get Started</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const variant = params.get("variant") || "A";
+
+    document.querySelector('#modal-window-get-started-button').addEventListener('click', () => {
+        window.parent.postMessage({ type: 'RelayPlatformOpenModal' }, '*');
+    });
+
+    document.querySelector('#access-request-link').addEventListener('click', () => {
+        window.parent.postMessage({ type: "RelayPlatformModalButton" }, '*');
+    });
+
+    document.querySelector('#form-unapproved-offered-button').addEventListener('click', () => {
+        window.parent.postMessage({ type: "RelayPlatformUnapprovedOfferedButton" }, '*');
+    });
+
+    document.querySelector('#close-button').addEventListener('click', hidePopup);
+    document.querySelector('#popup-backdrop').addEventListener('click', hidePopup);
+
+    function hidePopup(e) {
+        if (['close-button', 'popup-backdrop'].includes(e.target.id)) {
+            e.stopPropagation();
+            document.getElementById("popup-backdrop").classList.add("hidden");
+            document.body.classList.remove("max-h-screen");
+            document.body.classList.remove("overflow-y-hidden");
+        }
+    }
+    function showPopup() {
+        document.getElementById("popup-backdrop").classList.remove("hidden");
+        document.body.classList.add("overflow-hidden");
+        document.body.classList.add("max-h-screen");
+    }
+
+    function getBackgroundPath(segment) {
+        const isMobile = window.innerWidth < 640;
+        const backgroundType = isMobile ? 'background_mobile' : 'background';
+        return `url('./assets/header/${backgroundType}--${segment}.jpg')`;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        if (variant === "A") {
+            document.getElementById("start").classList.remove("hidden");
+            document.getElementById("start-title").classList.remove("hidden");
+        } else if (variant === "B") {
+            document.getElementById("subscribe").classList.remove("hidden");
+            document.getElementById("subscribe-title").classList.remove("hidden");
+        } else if (variant === "C") {
+            document.getElementById("pending").classList.remove("hidden");
+            document.getElementById("cta").classList.add("hidden");
+        }
+
+        // Animation setup
+        const playlist = [
+            "brand_loyalists",
+            "bargain_hunters",
+            "old_customers"
+        ];
+        let currentIndex = 0;
+
+        function updateElement(selector, action) {
+            const element = document.querySelector(selector);
+            if (element) action(element);
+        }
+
+        function transition() {
+            const current = playlist[currentIndex];
+            const next = playlist[(currentIndex + 1) % playlist.length];
+
+            // Update background
+            const header = document.querySelector("header");
+            const newOverlay = document.createElement("div");
+            newOverlay.className = "background-overlay";
+            newOverlay.style.backgroundImage = getBackgroundPath(next);
+
+            header.insertBefore(newOverlay, header.firstChild);
+            setTimeout(() => (newOverlay.style.opacity = "1"), 0);
+
+            updateElement(".background-overlay:not(:first-child)", (el) => {
+                el.style.opacity = "0";
+                setTimeout(() => el.remove(), 1000);
+            });
+
+            // Update labels
+            const labelsContainer = document.getElementById("labels");
+            updateElement(`#label--${current}`, (el) => {
+                el.style.transform = "translateX(100%)";
+                el.style.opacity = "0";
+            });
+
+            updateElement(`#label--${next}`, (el) => {
+                el.classList.remove("hidden");
+                el.style.transform = "translateX(-100%)";
+                setTimeout(() => {
+                    labelsContainer.style.width = `${el.offsetWidth}px`;
+                    el.style.transform = "translateX(0)";
+                    el.style.opacity = "1";
+                }, 50);
+            });
+
+            setTimeout(() => {
+                updateElement(`#label--${current}`, (el) => {
+                    el.classList.add("hidden");
+                    el.style.transform = "";
+                    el.style.opacity = "";
+                });
+            }, 550);
+
+            currentIndex = (currentIndex + 1) % playlist.length;
+        }
+
+        // Initial setup
+        updateElement("header", (header) => {
+            const initialOverlay = document.createElement("div");
+            initialOverlay.className = "background-overlay";
+            initialOverlay.style.backgroundImage = getBackgroundPath(playlist[0]);
+            initialOverlay.style.opacity = "1";
+            header.insertBefore(initialOverlay, header.firstChild);
+        });
+
+        function initializeLabels() {
+            const labelsContainer = document.getElementById("labels");
+            playlist.forEach((segment, index) => {
+                updateElement(`#label--${segment}`, (el) => {
+                    if (index === 0) {
+                        el.classList.remove("hidden");
+                        el.style.opacity = "1";
+                        // Force a reflow to ensure the element's dimensions are calculated
+                        el.offsetHeight;
+                        labelsContainer.style.width = `${el.offsetWidth}px`;
+                    } else {
+                        el.classList.add("hidden");
+                        el.style.opacity = "0";
+                    }
+                });
+            });
+        }
+
+        requestAnimationFrame(() => {
+            initializeLabels();
+            setTimeout(() => setInterval(transition, 5000), 100);
+        });
+
+        // Initialize Swiper
+        const swiper = new Swiper('.feature-carousel', {
+            slidesPerView: 'auto',
+            spaceBetween: 24,
+            grabCursor: true,
+            autoplay: false,
+            loop: false,
+            freeMode: {
+                enabled: true,
+                sticky: false,
+                momentumRatio: 0.25,
+                momentumVelocityRatio: 0.5,
+            },
+            mousewheel: {
+                forceToAxis: true,
+                sensitivity: 1,
+            },
+            keyboard: {
+                enabled: true,
+            },
+            navigation: {
+                enabled: false
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1.1,
+                    spaceBetween: 16
+                },
+                // xs (428px)
+                320: {
+                    slidesPerView: 1.1,
+                    spaceBetween: 16
+                },
+                // xs (428px)
+                428: {
+                    slidesPerView: 1.5,
+                    spaceBetween: 16
+                },
+                // sm (640px)
+                640: {
+                    slidesPerView: 1.5,
+                    spaceBetween: 16
+                },
+                // md (768px)
+                768: {
+                    slidesPerView: 2.2,
+                    spaceBetween: 16
+                },
+                // lg (1024px)
+                1024: {
+                    slidesPerView: 2.5,
+                    spaceBetween: 24
+                }
+            }
+        });
+
+        // Resize listener to update background when screen size changes
+        window.addEventListener('resize', () => {
+            const overlays = document.querySelectorAll('.background-overlay');
+            overlays.forEach(overlay => {
+                const currentBg = overlay.style.backgroundImage;
+                const segment = currentBg.match(/--([^.]+)\.jpg/)[1];
+                overlay.style.backgroundImage = getBackgroundPath(segment);
+            });
+        });
+    });
+</script>
+</body>
+
+</html>
